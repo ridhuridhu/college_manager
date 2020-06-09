@@ -1,0 +1,15 @@
+extends layout
+block content
+    .container.mt-5
+        .col-md-6.mx-auto
+            .card.card-body
+                h3.text-center Account Login
+                form(action='/user/login', method='post')
+                    .form-group
+                    label(for='email') Email
+                    input.form-control(type='email', name='email', required='', autofocus='')
+                    .form-group
+                    label(for='password') Password
+                    input.form-control(type='password', name='password', required='')
+                    hr
+                    button.btn.btn-primary(type='submit') Log In

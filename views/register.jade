@@ -1,0 +1,25 @@
+extends layout
+
+block content
+    .container.mt-5
+        if errors.length 
+            each error,i in errors
+                .alert.alert-danger  #{error.text}
+    .col-md-6.mx-auto
+        .card.card-body
+            h3.text-center Account Register
+            form(action='/user/register', method='post')
+                .form-group
+                label(for='name') Name
+                input.form-control(type='text', name='name', required='')
+                .form-group
+                label(for='email') Email
+                input.form-control(type='email', name='email', required='')
+                .form-group
+                label(for='password') Password
+                input.form-control(type='password', name='password', required='')
+                .form-group
+                label(for='email') Confirm Password
+                input.form-control(type='password', name='rpassword', required='')
+                hr
+                button.btn.btn-primary(type='submit') Sign Up
