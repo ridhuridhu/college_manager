@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    .card
+        form(action='/post', enctype='multipart/form-data', method='post')
+            div
+                label Select your profile picture:
+                input(type='file', name='pic')
+            div
+                input(type='text', name='status', id='')
+            div
+                input(type='submit', name='btn_upload_profile_pic', value='Upload')
+

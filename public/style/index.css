@@ -1,0 +1,17 @@
+.postCard{
+    max-width: 400px;
+    background-color: #f4f4f4;
+    border-radius: 20px;
+    margin: auto;
+
+}
+.postCard a input{
+    width: 100%;
+    max-width: 400px;
+    height: 40px;
+    border-radius: 20px;
+    text-align:left;
+    padding:0  15px;
+    cursor: pointer;
+
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+</head>
+<body class="container">
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="card">
+        <form action="/post"  enctype="multipart/form-data" method="post"></form>
+        <div>
+            <label>Select your profile picture:</label>
+            <input type="file" name="profile_pic" />
+        </div>
+        <div>
+            <input type="text" name="status" id="">
+        </div>
+        <div>
+            <input type="submit" name="btn_upload_profile_pic" value="Upload" />
+        </div>
+   
+    </div>
+
+
+<!-- 
+    <div class="postContainer">
+        <div class="top">
+            <a href="/profile/key">
+                <span>Username</span>  
+            </a>
+            <br>
+            <span class="text-muted">June 9 at 8.29 PM </span>
+        </div>
+        <div class="body">
+            <img src="" alt="">
+        </div>
+        <div class="bottom">
+            <button><a href="/like">Like</a></button>
+            <button><a href="">Comment</a></button>
+        </div>
+    </div> -->
+    
+</body>
+</html>
+<style>
+    .postContainer .body{
+       width: 100%;
+       min-width: 320px;
+       max-width: 500px;
+       border: 1px solid saddlebrown;
+       background-color: red;
+       height: 430px;
+       margin-top: 10px;
+
+   }
+   .postContainer .bottom{
+       margin-top: 10px;
+   }
+   button a:hover{
+       text-decoration: none;
+   }
+
+  
+   /* nav ul{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        text-align: center;
+    }
+    nav ul li {
+        flex: 1;
+        text-decoration: none;
+        list-style-type: none;
+
+    }
+    nav ul li a :hover{
+        text-decoration: none;
+    }
+      .postCard{
+        max-width: 400px;
+        background-color: #f4f4f4;
+        border-radius: 20px;
+
+    }
+    .postCard a input{
+        width: 100%;
+        max-width: 400px;
+        height: 40px;
+        border-radius: 20px;
+        text-align:left;
+        padding:0  15px;
+        cursor: pointer;
+
+    }
+
+*/
+
+</style>

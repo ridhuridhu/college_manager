@@ -1,3 +1,3 @@
 module.exports = {
-  MONGO_URL: 'mongodb://localhost/FaceBook'
+  MONGO_URL: 'mongodb://localhost/fb'
 };

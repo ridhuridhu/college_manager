@@ -1,18 +1,13 @@
 extends layout
+block head 
+    link(rel="stylesheet", href="../style/index.css")
+                    
+         
+    
 block content
-    .container.mt-5
-        h1.text-center #{title}
-        small.author by Ridhu
-        ul
-            
-            if user
-                li
-                    a(href='/user/logout') Logout
-            else   
-                li
-                    a(href='/user/register') Register
-                li
-                    a(href='/user/login') Login 
-
-        
-            
+    .container
+        br
+        .postCard
+            a(href='/post')
+                input(type='text', name='', placeholder=`What is on your mind, ${user.name}? ` )
+        //img(src="/image/profile-1591806888618.png", alt="",width="400px" srcset="")

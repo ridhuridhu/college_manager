@@ -1,0 +1,19 @@
+nav ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+}
+nav ul li {
+    flex: 1;
+    text-decoration: none;
+    list-style-type: none;
+
+}
+nav ul li a :hover{
+    text-decoration: none;
+}
+body{
+    font-size: 16px;
+    font-family: sans-serif;
+}
