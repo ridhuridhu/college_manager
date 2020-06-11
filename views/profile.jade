@@ -4,4 +4,53 @@ block head
     title #{profile.name}
 
 block content
-    h1 #{profile.name}
+    hr
+    h1.text-center #{profile.name}
+    -posts.reverse()
+    hr
+    h4.card-title.text-center Timeline
+    -for(var i=0;i<posts.length;i++){
+        .postContainer
+            .top
+                a(href=`/profile/${posts[i].user_id}`) #{posts[i].name} 
+                br
+                span.text-muted  #{posts[i].date}
+            .body
+                p #{posts[i].status}
+                img(src=`/image/${posts[i].image}`, alt='')
+            .bottom.row
+                -let show=0
+                -if(posts[i].likes.length){
+                    -let t=0
+                    -for(let j=0;j<posts[i].likes.length;j++){
+                        -if(JSON.stringify(posts[i].likes[j])===JSON.stringify(user._id)){
+                                a.btn.col(href=`/unlike/${posts[i]._id}`) 
+                                    p #{posts[i].likes.length}  &nbsp;
+                                        i.fa.fa-thumbs-up(aria-hidden='true')
+                                
+                        -}
+                        -else{
+                            -t+=1
+                        -}
+                        -if(t===posts[i].likes.length){
+                                a.btn.col(href=`/like/${posts[i]._id}`) 
+                                    p   #{posts[i].likes.length}  &nbsp;
+                                        i.fa.fa-thumbs-o-up(aria-hidden='true')
+                        -}
+                    -}
+                -}
+                -if(!posts[i].likes.length){
+                        a.btn.col(href=`/like/${posts[i]._id}`) 
+                            p   0 &nbsp;
+                                i.fa.fa-thumbs-o-up(aria-hidden='true')
+                -}
+                    a.btn.col(href='#') 
+                        p Comments  &nbsp;
+                            i.fa.fa-comments(aria-hidden='true')
+                    a.btn.col(href="#") 
+                        p   Share  &nbsp;
+                            i.fa.fa-paper-plane(aria-hidden='true')
+        
+                            
+        br
+    -}

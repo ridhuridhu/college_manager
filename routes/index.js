@@ -58,15 +58,21 @@ router.post("/post",upload.single("pic"),(req,res)=>{
 router.get("/profile",ensureAuthenticated,(req,res)=>{
   User.findById(req.user._id,(err,profile)=>{
     if(err) throw err
-    res.render('profile',{user:req.user,profile:profile})
-  })
+    Post.find({user_id:profile._id},(err,posts)=>{
+      if(err) throw err;
+    res.render('profile',{user:req.user,profile:profile,posts:posts})
+    })
+  });
 });
 
 router.get("/profile/:id",(req,res)=>{
   User.findById(req.params.id,(err,profile)=>{
     if(err) throw err
-    res.render('profile',{user:req.user,profile:profile})
-  })
+    Post.find({user_id:profile._id},(err,posts)=>{
+      if(err) throw err;
+    res.render('profile',{user:req.user,profile:profile,posts:posts})
+    })
+  });
 });
 
 
