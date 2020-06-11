@@ -22,27 +22,44 @@ body{
 
 .postContainer{
     width: 100%;
+    min-width: 280px;
     max-width: 650px;
     display: flex;
     flex-direction: column;
     border: 1px solid  silver;
-    padding: 5px  12px;
+    padding:15px  12px;
     margin: auto;
     background: white;
+    border-radius: 10px;
+    box-shadow: 5px 5px silver;
 }
 .postContainer img{
-width: 100%;
-min-width: 250px;
-max-width: 620px;
-height: auto;
-max-height: 500px;
-margin-top: 10px;
+    width: 100%;
+    min-width: 250px;
+    max-width: 630px;
+    height: auto;
+    max-height: 500px;
+    margin: auto ;
 
 }
 .postContainer .bottom{
    margin-top: 10px;
+   display: flex;
+   width: 100%;
+   min-width: 250px;
+   max-width: 630px;
    
+}
+.postContainer .top a{
+    padding: 10px;
+    margin-bottom:8px;
+}
+.btn{
+    flex-direction: row;
+    box-sizing: border-box;
+    flex: 1;
 }
 button a:hover{
    text-decoration: none;
 }
+

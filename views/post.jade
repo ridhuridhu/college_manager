@@ -3,11 +3,11 @@ extends layout
 block content
     .card
         form(action='/post', enctype='multipart/form-data', method='post')
-            div
+            div.form-group
                 label Select your profile picture:
                 input(type='file', name='pic')
-            div
-                input(type='text', name='status', id='')
-            div
-                input(type='submit', name='btn_upload_profile_pic', value='Upload')
+            div.form-group
+                textarea.form-control(type='text',rows="5",cols="5" ,name='status', id='')
+            div.form-group
+                input.btn.btn-success(type='submit', name='btn_upload_profile_pic', value='Upload')
 

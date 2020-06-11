@@ -4,6 +4,9 @@ nav ul{
     justify-content: center;
     text-align: center;
 }
+.nav-link{
+    font-size: 18px;
+}
 nav ul li {
     flex: 1;
     text-decoration: none;
@@ -18,11 +21,13 @@ body{
     font-family: sans-serif;
 }
 .btn{
-    border: 0.7px solid silver;
     background-color: #f4f4f4;
-    margin: 5px 10px 5px 10px;
+    margin: 5px;
 }
 .btn :hover{
     background-color: white;
     color: black;
+} 
+.btn i{
+    font-size: 23px;
 }

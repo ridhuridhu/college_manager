@@ -6,6 +6,7 @@ head
   link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css")
   link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css")
   link(rel="stylesheet", href="../style/layout.css")
+  link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
   block head
     -var title='Facebook'
     title #{title}
@@ -13,22 +14,31 @@ head
       nav
         ul.nav
           li
-            a.nav-link(href='/') Home 
+            a.nav-link(href='/')
+              i.fa.fa-home(aria-hidden='true')  &nbsp;
+              | Home 
           li
-            a.nav-link(href='/profile') Profile 
+            a.nav-link(href='/profile')
+              i.fa.fa-user(aria-hidden='true')  &nbsp;
+              | Profile 
           -if(user){
             li
-              a.nav-link(href='user/logout')  Logout 
+              a.nav-link(href='user/logout')
+                i.fa.fa-sign-out(aria-hidden='true')  &nbsp;
+                |  Logout 
           -}
           -else{
             li
-              a.nav-link(href='user/login')  Login 
+              a.nav-link(href='user/login') 
+                i.fa.fa-sign-in(aria-hidden='true')  &nbsp;
+                |  Login 
           -}
          
 
       .container
-        block content
-        
+        block content 
   br
+  
+  script(src="https://use.fontawesome.com/1767c78396.js")
   script(src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js")
   script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
