@@ -69,4 +69,27 @@ router.get("/profile/:id",(req,res)=>{
   })
 });
 
+
+router.get("/like/:id",ensureAuthenticated,(req,res)=>{
+  Post.findById(req.params.id,(err,post)=>{
+    if (err) throw err
+    console.log(post.likes.length)
+    post.likes.push(req.user._id)
+    console.log(post.likes.length)
+    post.save((err)=>{
+      if (err) throw err
+      res.redirect('/')
+    })
+ 
+
+  });
+});
+
+router.get("/unlike/:id",ensureAuthenticated,(req,res)=>{
+  Post.findByIdAndUpdate(req.params.id,{$pull:{"likes":req.user._id}},(err)=>{
+    if(err) throw err;
+    res.redirect("/");
+  })  
+})
+
 module.exports = router;

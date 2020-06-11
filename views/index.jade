@@ -10,17 +10,45 @@ block content
         .postCard
             a(href='/post')
                 input(type='text', name='', placeholder=`What is on your mind, ${user.name}? ` )
-        //img(src="/image/profile-1591806888618.png", alt="",width="400px" srcset="")
+        hr
         -posts.reverse()
         p #{posts[0]}
         br
        
         -for(var i=0;i<posts.length;i++){
-            a(href=`/profile/${posts[i].user_id}`) #{posts[i].name}
-            h4.card-title #{posts[i].status}
-            span.text-muted #{posts[i].date}
+            .postContainer
+                .top
+                    a(href=`/profile/${posts[i].user_id}`)
+                        span #{posts[i].name}
+                    br
+                    span.text-muted  #{posts[i].date}
+                .body
+                    p #{posts[i].status}
+                    img(src=`/image/${posts[i].image}`, alt='')
+                .bottom
+                    -let show=0
+                    -if(posts[i].likes.length){
+                        -let t=1
+                        -show=1
+                        -for(let j=0;j<posts[i].likes.length;j++){
+                            -if(JSON.stringify(posts[i].likes[j])===JSON.stringify(user._id)){
+                                button
+                                    a(href=`/unlike/${posts[i]._id}`) UnLike 
+                                    -t+=1
+                            -}
+                            -if(t===posts[i].likes.length){
+                                button
+                                    a(href=`/like/${posts[i]._id}`) Like 
+                            -}
+                        -}
+                    -}
+                    -if(!posts[i].likes.length){
+                        button
+                            a(href=`/like/${posts[i]._id}`) Like
+                    -}
+                    button
+                        a(href='#') Comment
             br
-            img(src=`/image/${posts[i].image}`, alt="",width="400px" srcset="")
-
 
         -}
+    script(src="../scripts/index.js")

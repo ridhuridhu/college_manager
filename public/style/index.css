@@ -1,3 +1,7 @@
+body{
+    background: #f4f4f4;
+}
+
 .postCard{
     max-width: 400px;
     background-color: #f4f4f4;
@@ -14,4 +18,31 @@
     padding:0  15px;
     cursor: pointer;
 
+}
+
+.postContainer{
+    width: 100%;
+    max-width: 560px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid  silver;
+    padding: 5px  12px;
+    margin: auto;
+    background: white;
+}
+.postContainer img{
+width: 100%;
+min-width: 250px;
+max-width: 520px;
+height: auto;
+max-height: 500px;
+margin-top: 10px;
+
+}
+.postContainer .bottom{
+   margin-top: 10px;
+   
+}
+button a:hover{
+   text-decoration: none;
 }
