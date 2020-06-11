@@ -4,9 +4,10 @@ var AutoIncrement=require("mongoose-sequence")(mongoose);
 
 const PostSchema=new Schema({
     key:{type:Number,unique:true,required:false},
-    Date:{type:String,default:Date.now()},
+    date:{type:String,default:Date.now()},
     status:{type:String},
-    user:{type:Schema.Types.ObjectId,ref:"User"},
+    user_id:{type:Schema.Types.ObjectId,ref:"User"},
+    name:{type:String}, 
     image:{type:String},
     likes:[{type:Schema.Types.ObjectId,ref:"User"}],
     comments:[{type:Schema.Types.ObjectId,ref:"User"}],

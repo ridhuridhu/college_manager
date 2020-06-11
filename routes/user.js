@@ -70,7 +70,8 @@ router.post('/register', (req,res)=>{
 
 
 router.get('/logout', ensureAuthenticated,(req,res)=>{
-    res.render("login")
+  req.logOut();
+  res.redirect("/user/login");
 });
 
 

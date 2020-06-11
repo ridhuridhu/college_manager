@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Post=require("../models/Post");
+const User=require("../models/User")
 //multer middler ware 
 const multer=require("multer");
 const path = require('path');
@@ -14,24 +15,37 @@ const storage = multer.diskStorage({
     }
 });
 const upload=multer({ storage: storage })
+//moment
+const moment=require("moment");
+const { findById } = require('../models/Post');
+
+//protect routes middleware
+const {ensureGuest, ensureAuthenticated} = require('../libs/auth');
+
 
 
 router.get('/', (req, res) => {
-  res.render('index',{user:req.user});
+  Post.find({},(err,posts)=>{
+    if(err) throw err;
+    res.render('index',{user:req.user,posts:posts});
+  })
+ 
 });
+
 
 router.get("/post",(req,res)=>{
   res.render("post")
 });
 
 router.post("/post",upload.single("pic"),(req,res)=>{
-  console.log(req.body);
   try {
     console.log(req.file,req.body);
     var post=new Post()
     post.status=req.body.status
     post.image=req.file.filename
     post.user=req.user._id
+    post.username=req.user.name
+    post.date=moment().format('MMMM Do YYYY, h:mm:ss a')
     post.save((err)=>{
       if(err) throw err;
       res.redirect("/");
@@ -40,4 +54,19 @@ router.post("/post",upload.single("pic"),(req,res)=>{
     res.send(400);
   }
 });
+
+router.get("/profile",ensureAuthenticated,(req,res)=>{
+  User.findById(req.user._id,(err,profile)=>{
+    if(err) throw err
+    res.render('profile',{user:req.user,profile:profile})
+  })
+});
+
+router.get("/profile/:id",(req,res)=>{
+  User.findById(req.params.id,(err,profile)=>{
+    if(err) throw err
+    res.render('profile',{user:req.user,profile:profile})
+  })
+});
+
 module.exports = router;

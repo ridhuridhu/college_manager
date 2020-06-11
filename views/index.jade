@@ -11,3 +11,16 @@ block content
             a(href='/post')
                 input(type='text', name='', placeholder=`What is on your mind, ${user.name}? ` )
         //img(src="/image/profile-1591806888618.png", alt="",width="400px" srcset="")
+        -posts.reverse()
+        p #{posts[0]}
+        br
+       
+        -for(var i=0;i<posts.length;i++){
+            a(href=`/profile/${posts[i].user_id}`) #{posts[i].name}
+            h4.card-title #{posts[i].status}
+            span.text-muted #{posts[i].date}
+            br
+            img(src=`/image/${posts[i].image}`, alt="",width="400px" srcset="")
+
+
+        -}
