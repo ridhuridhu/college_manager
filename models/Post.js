@@ -10,7 +10,7 @@ const PostSchema=new Schema({
     user_id:{type:Schema.Types.ObjectId,ref:"User"},
     name:{type:String}, 
     image:{type:String},
-    likes:[{type:Schema.Types.ObjectId,ref:"User",unique:true}],
+    likes:[{type:Schema.Types.ObjectId,ref:"User"}],
     comments:[{type:Schema.Types.ObjectId,ref:"User"}],
 });
 

@@ -39,12 +39,12 @@ router.get("/post",(req,res)=>{
 
 router.post("/post",upload.single("pic"),(req,res)=>{
   try {
-    console.log(req.file,req.body);
+    //console.log(req.file,req.body);
     var post=new Post()
     post.status=req.body.status
     post.image=req.file.filename
-    post.user=req.user._id
-    post.username=req.user.name
+    post.user_id=req.user._id
+    post.name=req.user.name
     post.date=moment().format('MMMM Do YYYY, h:mm:ss a')
     post.save((err)=>{
       if(err) throw err;
@@ -71,18 +71,10 @@ router.get("/profile/:id",(req,res)=>{
 
 
 router.get("/like/:id",ensureAuthenticated,(req,res)=>{
-  Post.findById(req.params.id,(err,post)=>{
-    if (err) throw err
-    console.log(post.likes.length)
-    post.likes.push(req.user._id)
-    console.log(post.likes.length)
-    post.save((err)=>{
-      if (err) throw err
-      res.redirect('/')
-    })
- 
-
-  });
+  Post.findByIdAndUpdate(req.params.id,{$push:{likes:req.user._id}},(err)=>{
+    if (err) throw err;
+    res.redirect("/");
+  })
 });
 
 router.get("/unlike/:id",ensureAuthenticated,(req,res)=>{

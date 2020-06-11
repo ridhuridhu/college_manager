@@ -5,6 +5,7 @@ block head
          
     
 block content
+    h2 #{user._id}
     .container
         br
         .postCard
@@ -19,7 +20,7 @@ block content
             .postContainer
                 .top
                     a(href=`/profile/${posts[i].user_id}`)
-                        span #{posts[i].name}
+                        span #{posts[i].name} 
                     br
                     span.text-muted  #{posts[i].date}
                 .body
@@ -28,26 +29,25 @@ block content
                 .bottom
                     -let show=0
                     -if(posts[i].likes.length){
-                        -let t=1
+                        -let t=0
                         -show=1
                         -for(let j=0;j<posts[i].likes.length;j++){
                             -if(JSON.stringify(posts[i].likes[j])===JSON.stringify(user._id)){
-                                button
-                                    a(href=`/unlike/${posts[i]._id}`) UnLike 
-                                    -t+=1
+                                    a.btn(href=`/unlike/${posts[i]._id}`) #{posts[i].likes.length} Likes Unlike 
+                                    
+                            -}
+                            -else{
+                                -t+=1
                             -}
                             -if(t===posts[i].likes.length){
-                                button
-                                    a(href=`/like/${posts[i]._id}`) Like 
+                                    a.btn(href=`/like/${posts[i]._id}`) #{posts[i].likes.length} Likes Like 
                             -}
                         -}
                     -}
                     -if(!posts[i].likes.length){
-                        button
-                            a(href=`/like/${posts[i]._id}`) Like
+                            a.btn(href=`/like/${posts[i]._id}`) Like 
                     -}
-                    button
-                        a(href='#') Comment
+                        a.btn(href='#') Comment  #{posts[i].likes.length}
             br
 
         -}

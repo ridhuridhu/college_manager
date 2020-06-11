@@ -22,7 +22,7 @@ body{
 
 .postContainer{
     width: 100%;
-    max-width: 560px;
+    max-width: 650px;
     display: flex;
     flex-direction: column;
     border: 1px solid  silver;
@@ -33,7 +33,7 @@ body{
 .postContainer img{
 width: 100%;
 min-width: 250px;
-max-width: 520px;
+max-width: 620px;
 height: auto;
 max-height: 500px;
 margin-top: 10px;
