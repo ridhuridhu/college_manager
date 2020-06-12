@@ -7,6 +7,9 @@ const MongoStore = require('connect-mongo')(session);
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const path = require('path');
+//routes
+const direct=require("./routes/direct")
+
 // my vars
 const port = process.env.PORT || 3000;
 const {MONGO_URL} = require('./config/');
@@ -45,5 +48,27 @@ app.use("/image/",express.static("./uploads"))
 // routes
 app.use(require('./routes/')); // main routes
 app.use('/user', require('./routes/user')); // user routes
+app.use('/direct',direct)
+
+//socket 
+const io=require("socket.io")(server);
+
+
+io.on("connection",(socket)=>{
+  //when users connects
+  socket.emit("message","A user has joined the Chat");
+
+
+  //when users Dis-connects
+  socket.on("disconnect",()=>{
+      io.emit("message",("A user has left the chat"));
+  });
+
+  //listen for message
+  socket.on("message",(message)=>{
+      io.emit("message",message);
+  });
+});
+
 // run server
 server.listen(port, () => console.info(`Server on Fire @${port}`));

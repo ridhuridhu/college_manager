@@ -31,9 +31,9 @@ block content
                         -let t=0
                         -for(let j=0;j<posts[i].likes.length;j++){
                             -if(JSON.stringify(posts[i].likes[j])===JSON.stringify(user._id)){
-                                    a.btn.col(href=`/unlike/${posts[i]._id}`) 
-                                        p #{posts[i].likes.length}  &nbsp;
-                                            i.fa.fa-thumbs-up(aria-hidden='true')
+                                    a.btn.col(href=`/unlike/${posts[i]._id}` id=`${posts[i]._id}`) 
+                                        | #{posts[i].likes.length}  &nbsp;
+                                        i.fa.fa-thumbs-up(aria-hidden='true')
                                     
                             -}
                             -else{

@@ -1,0 +1,7 @@
+#Chat{
+    overflow: scroll;
+    height: 100%;
+    overflow-x: hidden; 
+    max-height: 500px;
+
+}

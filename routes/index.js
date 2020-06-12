@@ -24,12 +24,10 @@ const {ensureGuest, ensureAuthenticated} = require('../libs/auth');
 
 
 
-router.get('/', (req, res) => {
-  Post.find({},(err,posts)=>{
-    if(err) throw err;
-    res.render('index',{user:req.user,posts:posts});
-  })
- 
+router.get('/',async (req, res) => {
+  var posts=await Post.find({})
+  res.render('index',{user:req.user,posts:posts});
+
 });
 
 
@@ -65,8 +63,8 @@ router.get("/profile",ensureAuthenticated,(req,res)=>{
   });
 });
 
-router.get("/profile/:id",(req,res)=>{
-  User.findById(req.params.id,(err,profile)=>{
+router.get("/profile/:id",async (req,res)=>{
+ await User.findById(req.params.id,(err,profile)=>{
     if(err) throw err
     Post.find({user_id:profile._id},(err,posts)=>{
       if(err) throw err;
