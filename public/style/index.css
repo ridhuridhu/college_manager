@@ -1,7 +1,7 @@
 
 .postCard{
     max-width: 400px;
-    background-color: 	#243447;
+    background-color: #141d26;
     border-radius: 20px;
     margin: auto;
 
@@ -12,6 +12,7 @@ body{
     font-family: sans-serif;
     background-color:#141d26;
     color: #f4f4f4;
+    direction: ltr;
     
 }
 .postCard a input{

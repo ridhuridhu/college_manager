@@ -1,8 +1,11 @@
 const router = require('express').Router();
-
+const User=require('../models/User');
 router.get('/',async (req, res) => {
-    
-    res.render("direct")
+    User.find({},(err,users)=>{
+        
+      res.render("direct",{users:users}); 
+    });
+  
   });
 
 
