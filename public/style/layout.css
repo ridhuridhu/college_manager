@@ -1,3 +1,5 @@
+
+
 nav ul{
     display: flex;
     flex-direction: row;
@@ -16,16 +18,14 @@ nav ul li {
 nav ul li a :hover{
     text-decoration: none;
 }
-body{
-    font-size: 16px;
-    font-family: sans-serif;
-}
+
+
 .btn{
-    background-color: #f4f4f4;
+    background-color: #141d26;
     margin: 5px;
 }
 .btn :hover{
-    background-color: white;
+    background-color: #141d26;
     color: black;
 } 
 .btn i{
@@ -41,7 +41,7 @@ body{
     border: 1px solid  silver;
     padding:15px  12px;
     margin: auto;
-    background: white;
+    background-color:#141d26;
     border-radius: 10px;
     box-shadow: 5px 5px silver;
 }

@@ -1,6 +1,7 @@
 extends layout
 
 block content
+    link(rel="stylesheet", href="../style/index.css")
     .card
         form(action='/post', enctype='multipart/form-data', method='post')
             div.form-group

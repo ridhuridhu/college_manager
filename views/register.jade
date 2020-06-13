@@ -1,6 +1,7 @@
 extends layout
 
 block content
+    link(rel="stylesheet", href="../style/index.css")
     .container.mt-5
         if errors.length 
             each error,i in errors
