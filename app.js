@@ -66,7 +66,13 @@ io.on("connection",(socket)=>{
 
   //listen for message
   socket.on("message",(message)=>{
-      io.emit("message",message);
+    socket.on("room",(room)=>{
+      socket.join(room)
+      io.sockets.in(room).emit('message',message)
+      //io.emit("message",message);
+    
+    })
+      
   });
 });
 

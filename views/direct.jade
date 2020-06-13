@@ -5,11 +5,10 @@ block head
 block content
     h1 Direct
     hr
-    .hideME
-        h1 #{user.key}
+    p #{users[0]}
+    
     #Chat.container
-    form.card(action='#')
-        .form-group
+    form.card()
             input#msgBox.form-control(name='', rows='')
             button#sendBtn.btn.btn-success Send
     script(src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.4/qs.min.js")

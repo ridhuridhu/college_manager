@@ -2,9 +2,9 @@ const id=Qs.parse(location.search)
 
 
 const socket=io();
+    const room='1234'
     const sendBtn=document.getElementById("sendBtn");
     socket.on("message",(message)=>{
-        console.log(window.location.pathname[5] );
         outputMessage(message);
     });
 
@@ -14,13 +14,13 @@ const socket=io();
         const msg=msgBox.value;
         //emit to server
         socket.emit("message",msg);
+        socket.emit("room",room)
         msgBox.value="";
         msgBox.focus();
     });
 
     function outputMessage(message){
         const div =document.createElement("p");
-        //div.classList.add("");
         div.innerHTML=`${message}`;
         document.getElementById("Chat").appendChild(div);
         document.getElementById("Chat").scrollTop=document.getElementById("Chat").scrollHeight;
@@ -61,4 +61,4 @@ io.sockets.in(room).emit('message', 'what is going on, party people?');
 
 // this message will NOT go to the client defined above
 io.sockets.in('foobar').emit('message', 'anyone in this room yet?');
-/*
+*/
