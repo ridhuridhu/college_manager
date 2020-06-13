@@ -74,3 +74,7 @@ body{
 button a:hover{
    text-decoration: none;
 }
+.input{
+    border: 1px solid silver;
+    margin: 10px;
+}

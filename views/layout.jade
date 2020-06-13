@@ -25,14 +25,15 @@ head
               i.fa.fa-user(aria-hidden='true')  &nbsp;
               | Profile 
           -if(user){
-            li
-              a.nav-link(href='user/logout')
-                i.fa.fa-sign-out(aria-hidden='true')  &nbsp;
-                |  Logout 
             li 
               a.nav-link(href='direct')
                 i.fa.fa-paper-plane(aria-hidden='true') &nbsp;
                 | Direct
+            li
+              a.nav-link(href='user/logout')
+                i.fa.fa-sign-out(aria-hidden='true')  &nbsp;
+                |  Logout 
+            
           -}
           -else{
             li

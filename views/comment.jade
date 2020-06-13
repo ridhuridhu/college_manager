@@ -1,0 +1,20 @@
+extends layout
+
+block head
+
+block content
+    p #{post}
+    .postContainer
+        .top
+            a(href=`/profile/${post.user_id}`) #{post.name} 
+            br
+            span.text-muted  #{post.date}
+        .body
+            p #{post.status}
+            img(src=`/image/${post.image}`, alt='')
+        .bottom.col
+            .row
+                form(action=`/addComment/${post._id}`, method="get")
+                    input.input(type="text", name="comment")
+                    input.btn(type="submit", value="Comment")
+           

@@ -88,4 +88,11 @@ router.get("/unlike/:id",ensureAuthenticated,(req,res)=>{
   })  
 })
 
+router.get('/comments/:id',ensureAuthenticated,(req,res)=>{
+  Post.findById(req.params.id,(err,post)=>{
+    if(err) throw err;
+    res.render('comment',{post:post});
+  })
+})
+
 module.exports = router;
