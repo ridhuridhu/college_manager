@@ -96,3 +96,6 @@ router.get('/comments/:id',ensureAuthenticated,(req,res)=>{
 })
 
 module.exports = router;
+
+//todo
+//poll app 
