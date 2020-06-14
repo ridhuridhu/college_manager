@@ -6,7 +6,7 @@ block content
         if errors.length 
             each error,i in errors
                 .alert.alert-danger  #{error.text}
-    .col-md-6.mx-auto
+    .container
         .card.card-body
             h3.text-center Account Register
             form(action='/user/register', method='post')
@@ -23,4 +23,7 @@ block content
                 label(for='email') Confirm Password
                 input.form-control(type='password', name='rpassword', required='')
                 hr
-                button.btn.btn-primary(type='submit') Sign Up
+                button.btn.btn-primary(type='submit') Register 
+        hr
+        p Have an account ?
+            a(href="/user/login")  Log in

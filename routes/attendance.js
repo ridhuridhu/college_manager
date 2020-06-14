@@ -10,7 +10,7 @@ router.post('/addSubject',(req,res)=>{
     subject.user=req.user._id;
     subject.save()
         .then(
-            res.send("done")
+            res.redirect("/profile")
         )
         .catch((err)=>{
             res.send(err);
@@ -37,7 +37,7 @@ router.get('/present/:id',(req,res)=>{
         subject.percentage=(subject.present/subject.total)
         subject.save()
             .then(
-                console.log(subject.present,subject.total,subject.percentage),
+                //console.log(subject.present,subject.total,subject.percentage),
                 res.redirect("/profile")
             )
             .catch((err)=>{
@@ -57,7 +57,7 @@ router.get('/absent/:id',(req,res)=>{
         subject.percentage=(subject.present/subject.total)
         subject.save()
             .then(
-                console.log(subject.present,subject.total,subject.percentage),
+                //console.log(subject.present,subject.total,subject.percentage),
                 res.redirect("/profile")
             )
             .catch((err)=>{

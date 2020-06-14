@@ -4,7 +4,6 @@ const User=require("../models/User")
 const Attendance=require('../models/Attendance')
 
 
-
 //multer middler ware 
 const multer=require("multer");
 const path = require('path');
@@ -28,14 +27,14 @@ const {ensureGuest, ensureAuthenticated} = require('../libs/auth');
 
 
 
-router.get('/',async (req, res) => {
+router.get('/',ensureAuthenticated,async (req, res) => {
   var posts=await Post.find({})
   res.render('index',{user:req.user,posts:posts});
 
 });
 
 
-router.get("/post",(req,res)=>{
+router.get("/post",ensureAuthenticated,(req,res)=>{
   res.render("post")
 });
 
@@ -72,7 +71,7 @@ router.get("/profile",ensureAuthenticated,(req,res)=>{
   });
 });
 
-router.get("/profile/:id",async (req,res)=>{
+router.get("/profile/:id",ensureAuthenticated,async (req,res)=>{
  await User.findById(req.params.id,(err,profile)=>{
     if(err) throw err
     Post.find({user_id:profile._id},(err,posts)=>{
