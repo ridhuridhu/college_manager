@@ -3,10 +3,46 @@ extends layout
 block head  
     title #{profile.name}
     link(rel="stylesheet", href="../style/index.css")
-
+    link(rel="stylesheet", href="../style/profile.css")
+    script(src="../scripts/profile.js")
 block content
     hr
     h1.text-center #{profile.name}
+    .postContainer
+        form(action='/attendance/addSubject', method='POST')
+            .form-group
+                label(for='') Add Subject
+                input.form-control(type='text', name='name', id='', placeholder='')
+                input.btn.btn-success(type='submit',id='addSubject' value='Add')
+    hr
+    p #{attendance[0]._id} #{attendance.length}
+
+    if(attendance)
+        .attendanceBox
+            -for(var k=0;k<attendance.length;k++){
+                .card
+                    h4.card-title #{attendance[k].name}
+                        span
+                           a.btn.btn-danger(href="/attendance/delete/"+attendance[k]._id) X
+                    -if(JSON.parse(attendance[k].percentage)>=0.75){
+                        h2.alert.alert-success Status: Peace Podu ✌🏻
+                    -}
+                    -if(JSON.parse(attendance[k].percentage)<0.75){
+                        h2.alert.alert-danger  Status: No Peace 🏃🏻‍♂️
+                    -}
+                   
+                    .card-body
+                        p Total Classes  : #{attendance[k].total}
+                        p Present : #{attendance[k].present}
+                        p Absent :#{attendance[k].absent}
+                    .card-footer
+                        a.btn.btn-success(href=`/attendance/present/${attendance[k]._id}`) ✔
+                        a.btn.btn-danger(href=`/attendance/absent/${attendance[k]._id}`) ❌
+
+            -}
+            
+        br
+
     -posts.reverse()
     hr
     h4.card-title.text-center Timeline

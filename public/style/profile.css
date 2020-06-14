@@ -1,0 +1,63 @@
+.attendanceBox{
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.attendanceBox .card{
+    margin: 5px;
+    border: 1px solid silver;
+    border-radius: 10px;
+    padding: 5px;
+    flex: 1;
+    min-width: 250px;
+    max-width: 450px;
+}
+.attendanceBox .card h4{
+    text-align: center;
+    font-weight: 650;
+    font-family: sans-serif;
+}
+.alert{
+    width: 100%;
+    height: auto;
+    font-size: 20px;
+    font-family: Arial;
+    text-align: start;
+    padding: 3px;
+
+}
+
+.attendanceBox .card-footer{
+    margin: 5px  5px;
+    padding: 7px;
+    display: flex;
+    flex-direction: row;
+}
+.attendanceBox .card-footer  .btn{
+    flex: 1;
+}
+.attendanceBox .card-title h4{
+    text-align: center;
+}
+.attendanceBox .card-title span{
+    float: right;
+    margin-bottom: 5px;
+}
+@media screen and (min-width: 600px) {
+    .attendanceBox{
+        display: flex;
+        flex-direction: row;
+
+    }
+    
+}
+@media screen and (max-width:599px) {
+    .attendanceBox{
+        display: flex;
+        flex-direction: column;
+       
+
+    }
+   
+
+}

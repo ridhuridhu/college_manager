@@ -1,6 +1,10 @@
 const router = require('express').Router();
 const Post=require("../models/Post");
 const User=require("../models/User")
+const Attendance=require('../models/Attendance')
+
+
+
 //multer middler ware 
 const multer=require("multer");
 const path = require('path');
@@ -53,13 +57,18 @@ router.post("/post",upload.single("pic"),(req,res)=>{
   }
 });
 
+
 router.get("/profile",ensureAuthenticated,(req,res)=>{
   User.findById(req.user._id,(err,profile)=>{
-    if(err) throw err
-    Post.find({user_id:profile._id},(err,posts)=>{
-      if(err) throw err;
-    res.render('profile',{user:req.user,profile:profile,posts:posts})
+    Attendance.find({'user':profile._id},(err,attendance)=>{
+      //console.log(attendance.present)
+      if(err) throw err
+      Post.find({user_id:profile._id},(err,posts)=>{
+        if(err) throw err;
+        res.render('profile',{user:req.user,profile:profile,posts:posts,attendance:attendance})
+      })
     })
+  
   });
 });
 
@@ -94,6 +103,7 @@ router.get('/comments/:id',ensureAuthenticated,(req,res)=>{
     res.render('comment',{post:post});
   })
 })
+
 
 module.exports = router;
 

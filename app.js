@@ -10,6 +10,7 @@ const path = require('path');
 const moment=require("moment");
 //routes
 const direct=require("./routes/direct")
+const attendance=require('./routes/attendance')
 
 // my vars
 const port = process.env.PORT || 3000;
@@ -49,7 +50,8 @@ app.use("/image/",express.static("./uploads"))
 // routes
 app.use(require('./routes/')); // main routes
 app.use('/user', require('./routes/user')); // user routes
-app.use('/direct',direct)
+app.use('/direct',direct) //chat routes 
+app.use('/attendance',attendance) //attendance route
 
 //socket 
 const io=require("socket.io")(server);
