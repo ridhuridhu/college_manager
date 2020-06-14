@@ -5,8 +5,20 @@ block head
 block content
     h1 Direct
     hr
-    p #{users[0]}
     
+    if(!private)
+        p #{users[0]}
+        -for(var i=0;i<users.length;i++){
+            -if(JSON.stringify(user._id)!== JSON.stringify(users[i]._id))
+                a(href=`/direct/${users[i]._id}`) #{users[i].name}
+                br
+        -}
+    
+    if(private)
+        p #{otherUser}
+        .card
+            input#room(type="text" value=`${otherUser._id}:${user._id}`)
+
     #Chat.container
     form.card()
             input#msgBox.form-control(name='', rows='')

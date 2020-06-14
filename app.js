@@ -61,13 +61,16 @@ io.on("connection",(socket)=>{
 
   //when users Dis-connects
   socket.on("disconnect",()=>{
-      io.emit("message",("A user has left the chat"));
+    socket.on("room",(room)=>{
+      io.sockets.in(room).emit("message",("A user has left the chat"));
+    })
   });
 
   //listen for message
   socket.on("message",(message)=>{
     socket.on("room",(room)=>{
       socket.join(room)
+      console.log(room)
       io.sockets.in(room).emit('message',message)
       //io.emit("message",message);
     

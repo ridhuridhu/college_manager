@@ -1,8 +1,31 @@
 const id=Qs.parse(location.search)
-
+console.log()
+function arrayRotate(arr) {
+    var temp=arr[25];
+    for(var i=26;i<arr.length;i++){
+        temp+=arr[i];
+    }
+    temp+=":"
+    for(var j=0;j<24;j++){
+        temp+=arr[j]
+    }
+    return temp;
+  }
+ 
 
 const socket=io();
-    const room='1234'
+    var room='1234'
+    if(window.location.pathname[10]){
+        const Room=document.getElementById("room");
+        room=Room.value
+        // console.log(room);
+        // console.log(room.length)
+        var room1=arrayRotate(Room.value)
+
+
+    }
+    //console.log(socket)
+   
     const sendBtn=document.getElementById("sendBtn");
     socket.on("message",(message)=>{
         outputMessage(message);
@@ -13,8 +36,14 @@ const socket=io();
         const msgBox=document.getElementById("msgBox");
         const msg=msgBox.value;
         //emit to server
+        console.log(room)
         socket.emit("message",msg);
         socket.emit("room",room)
+        
+        if(window.location.pathname[10]){
+            socket.emit("room",room1)
+        }
+     
         msgBox.value="";
         msgBox.focus();
     });

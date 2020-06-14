@@ -25,4 +25,11 @@ body{
     cursor: pointer;
 
 }
+input{
+    color: black;
+}
 
+#room{
+    display: none;
+    visibility: hidden;
+}
