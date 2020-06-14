@@ -7,6 +7,7 @@ const MongoStore = require('connect-mongo')(session);
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const path = require('path');
+const moment=require("moment");
 //routes
 const direct=require("./routes/direct")
 
@@ -53,30 +54,35 @@ app.use('/direct',direct)
 //socket 
 const io=require("socket.io")(server);
 
-
+const room="1234"
+//  post.date=moment().format('MMMM Do YYYY, h:mm:ss a')
 io.on("connection",(socket)=>{
   //when users connects
-  socket.emit("message","A user has joined the Chat");
-
-
+  socket.emit("message"," You have joined the Chat");
+  socket.on("room",(room)=>{
+    socket.join(room)    
+    
+  });
   //when users Dis-connects
   socket.on("disconnect",()=>{
-    socket.on("room",(room)=>{
-      io.sockets.in(room).emit("message",("A user has left the chat"));
-    })
+
+    io.sockets.in(room).emit("message",("A user has left the chat"));
+  
   });
 
-  //listen for message
   socket.on("message",(message)=>{
-    socket.on("room",(room)=>{
-      socket.join(room)
-      console.log(room)
-      io.sockets.in(room).emit('message',message)
-      //io.emit("message",message);
-    
-    })
-      
-  });
+     // console.log(message)
+    //console.log(message.room,message.msg)
+    // console.log(io.sockets)
+    io.sockets.in(message.room).emit('message',message.msg)
+    //io.emit("message",message);
+  
+})
+  socket.on("room1",(room1)=>{
+    socket.join(room1)
+    //console.log('room1 connected')
+  })
+
 });
 
 // run server
