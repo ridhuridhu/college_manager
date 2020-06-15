@@ -29,8 +29,7 @@ const { compareSync } = require('bcryptjs');
 
 router.get('/',ensureAuthenticated,async (req, res) => {
   var posts=await Post.find({})
-  var poll=await Poll.find({})
-  res.render('index',{user:req.user,posts:posts,poll:poll});
+  res.render('index',{user:req.user,posts:posts});
 
 });
 
