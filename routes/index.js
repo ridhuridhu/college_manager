@@ -3,7 +3,6 @@ const Post=require("../models/Post");
 const User=require("../models/User")
 const Attendance=require('../models/Attendance')
 
-
 //multer middler ware 
 const multer=require("multer");
 const path = require('path');
@@ -24,12 +23,14 @@ const { findById } = require('../models/Post');
 
 //protect routes middleware
 const {ensureGuest, ensureAuthenticated} = require('../libs/auth');
+const { compareSync } = require('bcryptjs');
 
 
 
 router.get('/',ensureAuthenticated,async (req, res) => {
   var posts=await Post.find({})
-  res.render('index',{user:req.user,posts:posts});
+  var poll=await Poll.find({})
+  res.render('index',{user:req.user,posts:posts,poll:poll});
 
 });
 

@@ -2,6 +2,8 @@ extends layout
 
 block content
     link(rel="stylesheet", href="../style/index.css")
+    h1.text-center  Post 📝
+    hr
     .card
         form(action='/post', enctype='multipart/form-data', method='post')
             div.form-group
@@ -11,4 +13,4 @@ block content
                 textarea.form-control(type='text',rows="5",cols="5" ,name='status', id='')
             div.form-group
                 input.btn.btn-success(type='submit', name='btn_upload_profile_pic', value='Upload')
-
+    br
