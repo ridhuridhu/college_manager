@@ -25,3 +25,41 @@
 
 */
 
+$('.like').click(function () { 
+    (this.innerHTML=`
+    
+    <button class="unlike" id="${this.id}" > 
+        <div class="${this.id} btn col">
+            Liked &nbsp;
+        <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+ 
+        </div>
+    </button>`)
+    console.log(this.id);
+        $.post('/likeAjax',{id:this.id},(id)=>{
+            if(id){
+                console.log(id,"liked")   
+            }
+        });   
+
+    
+});
+
+
+$('.unlike').click(function(){
+
+    (this.innerHTML=`
+    <button class="like" id="${this.id}" >
+        <div class="${this.id} btn col">
+            unliked &nbsp;
+            <i class="fa fa-thumbs-o-up" aria-hidden='true'></i>
+        </div>
+    </button>`)
+    $.post('unlikeAjax',{id:this.id},(id)=>{
+        if(id){
+            console.log(id,"unliked");
+
+        }
+    })
+});
+
