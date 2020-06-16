@@ -34,10 +34,10 @@ block content
                                     //- a.btn.col(href=`/unlike/${posts[i]._id}` id=`${posts[i]._id}`) 
                                     //-     | #{posts[i].likes.length}  &nbsp;
                                     //-     i.fa.fa-thumbs-up(aria-hidden='true')
-                                    button.unlike( id=`${posts[i]._id}`)  
+                                    button.unlike.btn.col( id=`${posts[i]._id}`)  
                                         .btn.col(class=`${posts[i]._id}`)
                                             | #{posts[i].likes.length}  &nbsp;
-                                            i.fa.fa-thumbs-up(aria-hidden='true')
+                                            i.fa.fa-thumbs-down(aria-hidden='true')
                                    
                                     
                             -}
@@ -48,7 +48,7 @@ block content
                                     //- a.btn.col(href=`/like/${posts[i]._id}`) 
                                     //-     p   #{posts[i].likes.length}  &nbsp;
                                     //-         i.fa.fa-thumbs-o-up(aria-hidden='true')
-                                    button.like( id=`${posts[i]._id}`)  
+                                    button.like.btn.col( id=`${posts[i]._id}`)  
                                         .btn.col(class=`${posts[i]._id}`)
                                             | #{posts[i].likes.length}  &nbsp;
                                             i.fa.fa-thumbs-up(aria-hidden='true')
@@ -59,7 +59,7 @@ block content
                             //- a.btn.col(href=`/like/${posts[i]._id}`) 
                             //-     p   0 &nbsp;
                             //-         i.fa.fa-thumbs-o-up(aria-hidden='true')
-                            button.like( id=`${posts[i]._id}`)  
+                            button.like.btn.col( id=`${posts[i]._id}`)  
                                 .btn.col(class=`${posts[i]._id}`)
                                     | #{posts[i].likes.length}  &nbsp;
                                     i.fa.fa-thumbs-up(aria-hidden='true')

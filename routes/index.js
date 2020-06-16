@@ -104,6 +104,7 @@ router.get('/comments/:id',ensureAuthenticated,(req,res)=>{
 })
 
 router.post('/likeAjax',(req,res)=>{
+  //console.log('like')
   Post.findByIdAndUpdate(req.body.id,{$push:{likes:req.user._id}},(err)=>{
     if(err) throw err;
     res.send(req.body.id);
@@ -111,6 +112,7 @@ router.post('/likeAjax',(req,res)=>{
 })
 
 router.post('/unlikeAjax',(req,res)=>{
+  //console.log('unlike')
   Post.findByIdAndUpdate(req.body.id,{$pull:{"likes":req.user._id}},(err)=>{
     if(err) throw err;
     res.send(req.body.id);

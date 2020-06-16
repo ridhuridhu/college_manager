@@ -22,7 +22,7 @@ nav ul li a :hover{
 
 .btn{
     background-color: #141d26;
-    margin: 5px;
+    
 }
 .btn :hover{
     background-color: #141d26;
@@ -70,10 +70,9 @@ nav ul li a :hover{
     flex-direction: row;
     box-sizing: border-box;
     flex: 1;
+    margin-left: 5px;
 }
-button a:hover{
-   text-decoration: none;
-}
+
 .input{
     border: 1px solid silver;
     margin: 10px;

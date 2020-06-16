@@ -20,10 +20,11 @@ block content
     if(attendance)
         .attendanceBox
             -for(var k=0;k<attendance.length;k++){
-                .card
+                .card(class=`${attendance[k]._id}`)
                     h4.card-title #{attendance[k].name}
                         span
-                           a.btn.btn-danger(href="/attendance/delete/"+attendance[k]._id) X
+                            //button.btn.btn-danger(class="del") X
+                            a.btn.btn-danger(href="/attendance/delete/"+attendance[k]._id) X
                     -if(JSON.parse(attendance[k].percentage)>=0.75){
                         h2.alert.alert-success Status: Peace Podu ✌🏻
                     -}
@@ -37,6 +38,7 @@ block content
                         p Absent :#{attendance[k].absent}
                     .card-footer
                         a.btn.btn-success(href=`/attendance/present/${attendance[k]._id}`) ✔
+                        //button.btn.btn-success.present(id=`${attendance[k]._id}`) ✔
                         a.btn.btn-danger(href=`/attendance/absent/${attendance[k]._id}`) ❌
 
             -}
