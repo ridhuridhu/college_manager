@@ -1,0 +1,56 @@
+extends layout 
+
+block head
+    title="ClassRoom"
+    link(rel="stylesheet", href="../style/index.css")
+    link(rel="stylesheet", href="../style/classHome.css")
+    
+block content
+    .container.topClassBox
+        button.btn.btn-primary.col(id="create") Create  Class
+        button.btn.btn-primary.col(id="join") Join Class 
+    br
+    form.create(action='/classroom/createClass', method='post')
+        .form-group
+            label Name of Class:
+            input.form-control(type='text', name='name', placeholder='enter class name')
+        .form-group
+            label batch :
+            input.form-control(type='text', name='batch', placeholder='enter batch ')
+            span.text-muted eg.nitt'23 
+        .form-group
+            label Semester:
+            input.form-control(type='text' name='semester' placeholder='enter name of semester' )
+            span.text-muted eg.semester 1
+        .form-group
+        input.btn.btn-primary(type='submit', width="100%" value='create Class')
+        hr
+    
+    
+    
+    
+   
+    form.join(action='/classroom/joinClass', method='post')
+        .form-group
+            label Class code :
+            input.form-control(type='text', name='code', placeholder='enter class code to join')
+        .form-group
+            input.btn.btn-primary(type='submit', width="100%" value='Join Class')
+        hr  
+    if classrooms 
+        -classrooms.reverse()
+        p #{classrooms[0]}
+        -for(var i=0;i<classrooms.length;i++){
+            .card
+                h4.card-title #{classrooms[i].name}
+                p.card-body
+                    | Semester :#{classrooms[i].semester}  Batch: #{classrooms[i].batch} 
+
+            br
+        -}
+        //join to each class 
+        //show each class in new jade 
+        
+    script(src="../scripts/classHome.js")
+
+            

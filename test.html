@@ -4,141 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" >
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body class="container">
-    <button onclick="f" class="like" id="" >
-        <div class="4{id} btn col">
-            liked &nbsp;
-            <i class="fa fa-thumbs-o-up" aria-hidden='true'></i>
-        </div>
-    </button>
-    <i class="fa fa-thumbs-down" aria-hidden="true"></i>
+    <form action="/addClass" method="post">
+       <div class="form-group">
+         <label for="">Class code :</label>
+         <input type="text" class="form-control" name="code" placeholder="enter class code to join">
+       </div>
+       <div class="form-group">
+           <input type="submit" class="btn btn-primary" value="Join Class">
+       </div>
+    </form>
 
-    <button class="unlike" id="" > 
-        <div class="4{} btn col">
-            unliked &nbsp;
-        <i class="fa fa-thumbs-up" aria-hidden="true"></i>
- 
-        </div>
-    </button>
 </body>
 </html>
 <script>
 
-    var button=document.getElementsByClassName('present')
-    bu
+    const createBtn=document.getElementById('create')
+const joinBtn=document.getElementById('join')
+
+var joinForm=document.getElementsByClassName('join')    
+joinForm.style.display='none';
 </script>
-<style>
-    .attendanceBox{
-        display: flex;
-        flex-wrap: wrap;
-
-    }
-    .attendanceBox .card{
-        margin: 5px;
-        border: 1px solid black;
-        padding: 5px;
-        flex: 1;
-        min-width: 250px;
-    }
-    .attendanceBox .card h4{
-        text-align: center;
-    }
-
-    .attendanceBox .card-footer input{
-        width: 100%;
-        margin: 5px  5px;
-        padding: 7px;
-    }
-    
-    @media screen and (min-width: 600px) {
-        .attendanceBox{
-            display: flex;
-            flex-direction: row;
-    
-        }
-        
-    }
-    @media screen and (max-width:599px) {
-        .attendanceBox{
-            display: flex;
-            flex-direction: column;
-           
-    
-        }
-       
-    
-    }
-
-    body{
-        background-color: #f4f4f4;
-    }
-    .postContainer{
-        width: 100%;
-        max-width: 560px;
-        display: flex;
-        flex-direction: column;
-        border: 1px solid  silver;
-        padding: 5px  12px;
-    }
-    .postContainer img{
-    width: 100%;
-    min-width: 250px;
-    max-width: 520px;
-    height: auto;
-    max-height: 500px;
-    margin-top: 10px;
-
-   }
-   .postContainer .bottom{
-       margin-top: 10px;
-   }
-   button a:hover{
-       text-decoration: none;
-   }
-
-  
-   /* nav ul{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        text-align: center;
-    }
-    nav ul li {
-        flex: 1;
-        text-decoration: none;
-        list-style-type: none;
-
-    }
-    nav ul li a :hover{
-        text-decoration: none;
-    }
-      .postCard{
-        max-width: 400px;
-        background-color: #f4f4f4;
-        border-radius: 20px;
-
-    }
-    .postCard a input{
-        width: 100%;
-        max-width: 400px;
-        height: 40px;
-        border-radius: 20px;
-        text-align:left;
-        padding:0  15px;
-        cursor: pointer;
-
-    }
-
-*/
-
-</style>
-

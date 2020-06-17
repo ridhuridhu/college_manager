@@ -11,7 +11,7 @@ const moment=require("moment");
 //routes
 const direct=require("./routes/direct")
 const attendance=require('./routes/attendance')
-
+const classroom=require('./routes/classroom')
 // my vars
 const port = process.env.PORT || 3000;
 const {MONGO_URL} = require('./config/');
@@ -47,11 +47,16 @@ app.set('view engine', 'jade');
 require('./config/passport')(passport);
 //image 
 app.use("/image/",express.static("./uploads"))
+
+//-------ROUTER--------
 // routes
 app.use(require('./routes/')); // main routes
 app.use('/user', require('./routes/user')); // user routes
 app.use('/direct',direct) //chat routes 
 app.use('/attendance',attendance) //attendance route
+app.use('/classroom',classroom) //classroom routes
+
+//-------END--of--ROUTER----
 
 //socket 
 const io=require("socket.io")(server);
