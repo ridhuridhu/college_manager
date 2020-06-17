@@ -26,13 +26,11 @@ const {ensureGuest, ensureAuthenticated} = require('../libs/auth');
 const { compareSync } = require('bcryptjs');
 
 
-
 router.get('/',ensureAuthenticated,async (req, res) => {
   var posts=await Post.find({})
   res.render('index',{user:req.user,posts:posts});
 
 });
-
 
 router.get("/post",ensureAuthenticated,(req,res)=>{
   res.render("post")
@@ -40,7 +38,6 @@ router.get("/post",ensureAuthenticated,(req,res)=>{
 
 router.post("/post",upload.single("pic"),(req,res)=>{
   try {
-    //console.log(req.file,req.body);
     var post=new Post()
     post.status=req.body.status
     post.image=req.file.filename
@@ -62,10 +59,7 @@ router.get("/profile",ensureAuthenticated,(req,res)=>{
     Attendance.find({'user':profile._id},(err,attendance)=>{
       //console.log(attendance.present)
       if(err) throw err
-      Post.find({user_id:profile._id},(err,posts)=>{
-        if(err) throw err;
-        res.render('profile',{user:req.user,profile:profile,posts:posts,attendance:attendance})
-      })
+        res.render('profile',{user:req.user,profile:profile,attendance:attendance})
     })
   
   });
@@ -74,27 +68,26 @@ router.get("/profile",ensureAuthenticated,(req,res)=>{
 router.get("/profile/:id",ensureAuthenticated,async (req,res)=>{
  await User.findById(req.params.id,(err,profile)=>{
     if(err) throw err
-    Post.find({user_id:profile._id},(err,posts)=>{
-      if(err) throw err;
-    res.render('profile',{user:req.user,profile:profile,posts:posts})
-    })
+   
+    res.render('profile',{user:req.user,profile:profile})
+
   });
 });
 
 
-router.get("/like/:id",ensureAuthenticated,(req,res)=>{
-  Post.findByIdAndUpdate(req.params.id,{$push:{likes:req.user._id}},(err)=>{
-    if (err) throw err;
-    res.redirect("/");
-  })
-});
+// router.get("/like/:id",ensureAuthenticated,(req,res)=>{
+//   Post.findByIdAndUpdate(req.params.id,{$push:{likes:req.user._id}},(err)=>{
+//     if (err) throw err;
+//     res.redirect("/");
+//   })
+// });
 
-router.get("/unlike/:id",ensureAuthenticated,(req,res)=>{
-  Post.findByIdAndUpdate(req.params.id,{$pull:{"likes":req.user._id}},(err)=>{
-    if(err) throw err;
-    res.redirect("/");
-  })  
-})
+// router.get("/unlike/:id",ensureAuthenticated,(req,res)=>{
+//   Post.findByIdAndUpdate(req.params.id,{$pull:{"likes":req.user._id}},(err)=>{
+//     if(err) throw err;
+//     res.redirect("/");
+//   })  
+// })
 
 router.get('/comments/:id',ensureAuthenticated,(req,res)=>{
   Post.findById(req.params.id,(err,post)=>{
@@ -121,5 +114,3 @@ router.post('/unlikeAjax',(req,res)=>{
 });
 module.exports = router;
 
-//todo
-//poll app 
