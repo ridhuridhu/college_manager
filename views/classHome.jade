@@ -20,8 +20,8 @@ block content
             span.text-muted eg.nitt'23 
         .form-group
             label Semester:
-            input.form-control(type='text' name='semester' placeholder='enter name of semester' )
-            span.text-muted eg.semester 1
+            input.form-control(type='number' name='semester' placeholder='enter name of semester' )
+           
         .form-group
         input.btn.btn-primary(type='submit', width="100%" value='create Class')
         hr
@@ -37,17 +37,41 @@ block content
         .form-group
             input.btn.btn-primary(type='submit', width="100%" value='Join Class')
         hr  
+    -classrooms.reverse()
     if classrooms 
-        -classrooms.reverse()
-        p #{classrooms[0]}
+        
+        p #{classrooms}
+        p #{user}
         -for(var i=0;i<classrooms.length;i++){
-            .card
-                h4.card-title #{classrooms[i].name}
-                p.card-body
-                    | Semester :#{classrooms[i].semester}  Batch: #{classrooms[i].batch} 
-
-            br
+            if(JSON.stringify(user._id)===JSON.stringify(classrooms[i].cr))
+                .card
+                    h4.card-title #{classrooms[i].name}
+                    p.card-body
+                        | Semester :#{classrooms[i].semester}  Batch: #{classrooms[i].batch} 
+                    
+                    if(JSON.stringify(user._id)===JSON.stringify(classrooms[i].cr))
+                        h3 Class Code: #{classrooms[i].code}
+                        p Join via link 
+                            a(href=`${ classrooms[i].link }`) 127.0.0.1:3000#{classrooms[i].link}
+                br
+                hr
         -}
+    h4 Class
+    p #{user.class}
+    -for(var i=0;i<(user.class).length;i++){
+            -for(var j=0;j<classrooms.length;j++){
+                .card
+                    h4.card-title #{classrooms[j].name}
+                    p.card-body
+                        | Semester :#{classrooms[j].semester}  Batch: #{classrooms[j].batch} 
+                    a(href=`/classroom/${classrooms[j]._id}`) Enter Class
+            br
+            hr
+                
+        -}
+    -}
+    
+    
         //join to each class 
         //show each class in new jade 
         

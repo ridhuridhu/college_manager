@@ -2,6 +2,9 @@ const router = require('express').Router();
 const Post=require("../models/Post");
 const User=require("../models/User")
 const Attendance=require('../models/Attendance')
+const Classroom=require('../models/Classroom')
+
+
 
 //multer middler ware 
 const multer=require("multer");
@@ -24,11 +27,12 @@ const { findById } = require('../models/Post');
 //protect routes middleware
 const {ensureGuest, ensureAuthenticated} = require('../libs/auth');
 const { compareSync } = require('bcryptjs');
+const { route } = require('./classroom');
 
 
 router.get('/',ensureAuthenticated,async (req, res) => {
   var posts=await Post.find({})
-  console.log(posts.length);
+  //console.log(posts.length);
   res.render('index',{user:req.user,posts:posts});
 
 });
@@ -113,5 +117,34 @@ router.post('/unlikeAjax',(req,res)=>{
   })  
 
 });
+
+
+
+router.get('/join/:code',(req,res)=>{
+  // console.log(req.params);
+  
+  const code=req.params.code;
+  const studentId=req.user._id;
+  //console.log( Classroom.findOneAndUpdate({code:code},{ $push:{ classmates:req.user._id }} ));
+  //Classroom.findOneAndUpdate({code:code},{ $push:{ classmates:req.user._id }} )
+  Classroom.findOne({code:code},(err,myclass)=>{
+    if(err)  throw err;
+    myclass.classmates.push(studentId)
+    myclass.save(err=>{
+    if(err) throw err;
+    User.findById(req.user._id,(err,user)=>{
+      if(err) throw err;
+      user.class.push(myclass._id)
+      user.save(err=>{
+          if (err) throw err;
+           })
+    })
+
+    })
+    res.render('classroom',{myclass:myclass})
+     
+
+  })
+})
 module.exports = router;
 

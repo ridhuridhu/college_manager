@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema=mongoose.Schema;
+mongoose.plugin(schema => { schema.options.usePushEach = true });
 var AutoIncrement=require("mongoose-sequence")(mongoose);
 
 
@@ -9,9 +10,9 @@ const userSchema = new Schema({
   password: {type: String, required: true},
   key:{type:Number,unique:true,required:false},
   Date:{type:Date,default:Date.now()},
-  friends:[{type:Schema.Types.ObjectId,ref:"User"}],
-  friendRequest:[{type:Schema.Types.ObjectId,ref:"User"}],
   post:[{type:Schema.Types.ObjectId,ref:"Post"}],
+  class:[{type:Schema.Types.ObjectId,ref:"User"}],
+
 });
 
 userSchema.plugin(AutoIncrement,{id:"key_seq",inc_field:"key"});
