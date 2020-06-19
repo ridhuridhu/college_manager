@@ -9,21 +9,20 @@
 Clone the repo and install the dependencies.
 
 ```bash
-git clone https://github.com/ridhuridhu/Your_are_Invited.git
+git clone https://github.com/ridhuridhu/College-Manager.git
 cd Your_are_Invited
 ```
 
 ```bash
 npm install
-npm install nodemon
 ```
 <hr>
 To start the express server, run the following
 
 ```bash
-nodemon
+npm start 
 ```
 
-Open [http://localhost:3000](http://localhost:3000) and take a look around.
+Open [http://localhost:3000](http://localhost:3000) and take a look around 🚶🏻‍♀️🏃🏻‍♀️
 <hr>
 <br>
