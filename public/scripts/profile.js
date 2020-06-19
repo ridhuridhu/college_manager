@@ -1,6 +1,6 @@
 
 $('.delBox').click(function () { 
-    (this.innerHTML=``)
+    // (this.innerHTML=``)
     $(this).hide();
     //console.log(this.id);
     //console.log('ji');
@@ -20,12 +20,13 @@ $('.delBox').click(function () {
 $('.present').click(async  function () { 
    //console.log('present');
    //console.log(this.id);
-  
+  //console.log('present');
     $.post('/attendance/present',{id:this.id},(NewSubject)=>{
        // console.log( NewSubject.present,NewSubject.absent,NewSubject.total,NewSubject.percentage);
        // console.log(NewSubject);
        // console.log(document.getElementsByClassName(`${NewSubject.id}`));
-        document.getElementsByClassName(`${NewSubject.id}`).innerHTML=` <div class="card ${NewSubject.id}">
+      
+        $(`.${NewSubject.id}`).html(`
         <h4 class="card-title"> ${NewSubject.name}
             <span>
                 <button ${NewSubject.id} class="delBox btn btn-danger">
@@ -40,36 +41,12 @@ $('.present').click(async  function () {
             <p> Absent :${NewSubject.absent}</p>
         </div>
         <div class="card-footer">
-            <button ${NewSubject.id} class="btn btn-success present">
+            <button id="${NewSubject.id}" class="btn btn-success present">
                 ✔
             </button>
-            <button ${NewSubject.id} class="btn btn-danger absent" >
+            <button id="${NewSubject.id}" class="btn btn-danger absent" >
                 ❌
             </button>
-        </div>
-        </div>`
-        $(`.${NewSubject.id}`).html(` <div class="card ${NewSubject.id}">
-        <h4 class="card-title"> ${NewSubject.name}
-            <span>
-                <button ${NewSubject.id} class="delBox btn btn-danger">
-                        X
-                </button>
-            </span>
-        </h4>
-        ${NewSubject.status}
-        <div class="card-body">
-        <p> Total Classes  : ${NewSubject.total}</p>
-        <p> Present : ${NewSubject.present}</p>
-        <p> Absent :${NewSubject.absent}</p>
-        </div>
-        <div class="card-footer">
-            <button ${NewSubject.id} class="btn btn-success present">
-                ✔
-            </button>
-            <button ${NewSubject.id} class="btn btn-danger absent" >
-                ❌
-            </button>
-        </div>
         </div>`);
     })
    
@@ -78,10 +55,10 @@ $('.present').click(async  function () {
 
 $('.absent').click(function(){
     $.post('/attendance/absent',{id:this.id},(NewSubject)=>{
-        document.getElementsByClassName(`${NewSubject.id}`).innerHTML=` <div class="card ${NewSubject.id}">
+        document.getElementsByClassName(`${NewSubject.id}`).innerHTML=`
         <h4 class="card-title"> ${NewSubject.name}
             <span>
-                <button ${NewSubject.id} class="delBox btn btn-danger">
+                <button id="${NewSubject.id}" class="delBox btn btn-danger">
                         X
                 </button>
             </span>
@@ -93,36 +70,34 @@ $('.absent').click(function(){
             <p> Absent :${NewSubject.absent}</p>
         </div>
         <div class="card-footer">
-            <button ${NewSubject.id} class="btn btn-success present">
+            <button id="${NewSubject.id}" class="btn btn-success present">
                 ✔
             </button>
-            <button ${NewSubject.id} class="btn btn-danger absent" >
+            <button id="${NewSubject.id}" class="btn btn-danger absent" >
                 ❌
             </button>
-        </div>
         </div>`
-        $(`.${NewSubject.id}`).html(` <div class="card ${NewSubject.id}">
+        $(`.${NewSubject.id}`).html(`
         <h4 class="card-title"> ${NewSubject.name}
             <span>
-                <button ${NewSubject.id} class="delBox btn btn-danger">
+                <button id="${NewSubject.id}" class="delBox btn btn-danger">
                         X
                 </button>
             </span>
         </h4>
         ${NewSubject.status}
         <div class="card-body">
-        <p> Total Classes  : ${NewSubject.total}</p>
-        <p> Present : ${NewSubject.present}</p>
-        <p> Absent :${NewSubject.absent}</p>
-        </div>
+            <p> Total Classes  : ${NewSubject.total}</p>
+            <p> Present : ${NewSubject.present}</p>
+            <p> Absent :${NewSubject.absent}</p>
+            </div>
         <div class="card-footer">
-            <button ${NewSubject.id} class="btn btn-success present">
+            <button id="${NewSubject.id}" class="btn btn-success present">
                 ✔
             </button>
-            <button ${NewSubject.id} class="btn btn-danger absent" >
+            <button id="${NewSubject.id}" class="btn btn-danger absent" >
                 ❌
             </button>
-        </div>
         </div>`); 
     })
 });

@@ -21,7 +21,6 @@ const socket=io();
         // console.log(room.length)
         var room1=arrayRotate(Room.value)
 
-
     }
     //console.log(socket)
    
@@ -38,7 +37,6 @@ const socket=io();
         //console.log(room)
         socket.emit("room",room)
         socket.emit("message",{msg,room});
-        
         
         if(window.location.pathname[10]){
             socket.emit("room1",room1)
