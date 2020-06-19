@@ -4,7 +4,7 @@ block head
     title #{profile.name}
     link(rel="stylesheet", href="../style/index.css")
     link(rel="stylesheet", href="../style/profile.css")
-    script(src="../scripts/profile.js")
+    
 block content
     hr
     h1.text-center #{profile.name}
@@ -23,8 +23,7 @@ block content
                 .card(class=`${attendance[k]._id}`)
                     h4.card-title #{attendance[k].name}
                         span
-                            //button.btn.btn-danger(class="del") X
-                            a.btn.btn-danger(href="/attendance/delete/"+attendance[k]._id) X
+                            button.delBox.btn.btn-danger(id=`${attendance[k]._id}`) X
                     -if(JSON.parse(attendance[k].percentage)>=0.75){
                         h2.alert.alert-success Status: Peace Podu ✌🏻
                     -}
@@ -37,12 +36,11 @@ block content
                         p Present : #{attendance[k].present}
                         p Absent :#{attendance[k].absent}
                     .card-footer
-                        a.btn.btn-success(href=`/attendance/present/${attendance[k]._id}`) ✔
-                        //button.btn.btn-success.present(id=`${attendance[k]._id}`) ✔
-                        a.btn.btn-danger(href=`/attendance/absent/${attendance[k]._id}`) ❌
+                        button.btn.btn-success.present(id=`${attendance[k]._id}`)  ✔
+                        button.btn.btn-danger.absent(id=`${attendance[k]._id}`) ❌
 
             -}
             
         br
 
- 
+    script(src="../scripts/profile.js")

@@ -9,15 +9,37 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body class="container">
-    <form action="/addClass" method="post">
-       <div class="form-group">
-         <label for="">Class code :</label>
-         <input type="text" class="form-control" name="code" placeholder="enter class code to join">
-       </div>
-       <div class="form-group">
-           <input type="submit" class="btn btn-primary" value="Join Class">
-       </div>
-    </form>
+    <div class="card 4{id}">
+        <h4 class="card-title"> NAME
+            <span>
+                <button {id} class="delBox btn btn-danger">
+                        X
+                </button>
+            </span>
+        </h4>
+        <!-- if(>=0.75) -->
+        <h2 class="alert alert-success">
+            Status:Peace Podu ✌🏻
+        </h2>   
+        <!-- if(<75) -->
+        <h2 class="alert alert-danger">
+            Status: No Peace 🏃🏻‍♂️
+        </h2>
+        <div class="card-body">
+            p Total Classes  : #{attendance[k].total}
+            p Present : #{attendance[k].present}
+            p Absent :#{attendance[k].absent}
+        </div>
+        <div class="card-footer">
+            <button {id} class="btn btn-success present">
+                ✔
+            </button>
+            <button {id} class="btn btn-danger absent" >
+                ❌
+            </button>
+        </div>
+
+    </div>
 
 </body>
 </html>

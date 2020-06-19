@@ -17,53 +17,77 @@ router.post('/addSubject',(req,res)=>{
         })
 });
 
-//delete subject card
-router.get('/delete/:id',(req,res)=>{
-    Attendance.findByIdAndRemove((req.params.id),(err,done)=>{
+//ajax del Button
+router.post('/delBox',(req,res)=>{
+    var id=(req.body.id);
+    Attendance.findByIdAndRemove((id),(err,done)=>{
         if(err) throw err;
-        res.redirect("/profile")
+        res.send(id)
     })
+    
 
+   
 })
 
-
-//add present to subject card
-router.get('/present/:id',(req,res)=>{
-    Attendance.findById((req.params.id),(err,subject)=>{
+router.post('/present',(req,res)=>{
+    Attendance.findById((req.body.id),(err,subject)=>{
         if(err) throw err;
-
+        const NewSubject={}
         subject.present+=1;
         subject.total+=1;
         subject.percentage=(subject.present/subject.total)
+        if(subject.percentage>=0.75){ NewSubject.status= `<h2 class="alert alert-success">Status:Peace Podu ✌🏻</h2>  `
+        }
+        if(subject.percentage<0.75){NewSubject.status=`<h2 class="alert alert-danger">Status: No Peace 🏃🏻‍♂️</h2>`
+        }
+      
+        NewSubject.present=subject.present
+        NewSubject.absent=subject.absent
+        NewSubject.total=subject.total
+        NewSubject.percentage=subject.percentage
+        NewSubject.name=subject.name
+        NewSubject.id=subject._id
         subject.save()
+        
             .then(
-                //console.log(subject.present,subject.total,subject.percentage),
-                res.redirect("/profile")
+                //console.log(NewSubject),
+                res.send(NewSubject)
+                
             )
             .catch((err)=>{
                 console.log(err)
             });
       
     }); 
-})
+});
 
-//add absent to subject card
-router.get('/absent/:id',(req,res)=>{
-    Attendance.findById((req.params.id),(err,subject)=>{
+router.post('/absent',(req,res)=>{
+    Attendance.findById((req.body.id),(err,subject)=>{
         if(err) throw err;
-
+        const NewSubject={}
         subject.absent+=1;
         subject.total+=1;
         subject.percentage=(subject.present/subject.total)
+        if(subject.percentage>=0.75){ NewSubject.status= `<h2 class="alert alert-success">Status:Peace Podu ✌🏻</h2>  `
+        }
+        if(subject.percentage<0.75){NewSubject.status=`<h2 class="alert alert-danger">Status: No Peace 🏃🏻‍♂️</h2>`
+        }
+        NewSubject.present=subject.present
+        NewSubject.absent=subject.absent
+        NewSubject.total=subject.total
+        NewSubject.percentage=subject.percentage
+        NewSubject.name=subject.name
+        NewSubject.id=subject._id
+      
         subject.save()
             .then(
                 //console.log(subject.present,subject.total,subject.percentage),
-                res.redirect("/profile")
+                res.send(NewSubject)
             )
             .catch((err)=>{
                 console.log(err)
             });
       
-    }); 
+    })
 })
 module.exports = router;
