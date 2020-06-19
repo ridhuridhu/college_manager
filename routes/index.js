@@ -128,8 +128,6 @@ router.get('/join/:code',(req,res)=>{
   Classroom.findOne({code:code},(err,myclass)=>{
     if(err) throw err;
     const allowToClass=(myclass.classmates).indexOf(req.user._id)>-1
-    
- 
     if(allowToClass){
         res.render('classroom',{myclass:myclass})
         //console.log(allowToClass,"allow to class");

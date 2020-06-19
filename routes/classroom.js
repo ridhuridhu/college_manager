@@ -34,11 +34,11 @@ router.post('/createClass',(req,res)=>{
 });
 
 router.post('/joinClass',(req,res)=>{
-   console.log(req.body);
+  // console.log(req.body);
     
     const code=req.body.code;
     const studentId=req.user._id;
-    console.log(studentId,"student id");
+    //console.log(studentId,"student id");
     //.findOneAndUpdate({code:code},{ $push:{ classmates:studentId }} )
     Classroom.findOne({code:code},(err,myclass)=>{
         if(err) throw err;
