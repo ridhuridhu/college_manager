@@ -31,9 +31,6 @@ block content
                         -let t=0
                         -for(let j=0;j<posts[i].likes.length;j++){
                             -if(JSON.stringify(posts[i].likes[j])===JSON.stringify(user._id)){
-                                    //- a.btn.col(href=`/unlike/${posts[i]._id}` id=`${posts[i]._id}`) 
-                                    //-     | #{posts[i].likes.length}  &nbsp;
-                                    //-     i.fa.fa-thumbs-up(aria-hidden='true')
                                     button.unlike.btn.col( id=`${posts[i]._id}`)  
                                         .btn.col(class=`${posts[i]._id}`)
                                             | #{posts[i].likes.length}  &nbsp;
@@ -45,9 +42,6 @@ block content
                                 -t+=1
                             -}
                             -if(t===posts[i].likes.length){
-                                    //- a.btn.col(href=`/like/${posts[i]._id}`) 
-                                    //-     p   #{posts[i].likes.length}  &nbsp;
-                                    //-         i.fa.fa-thumbs-o-up(aria-hidden='true')
                                     button.like.btn.col( id=`${posts[i]._id}`)  
                                         .btn.col(class=`${posts[i]._id}`)
                                             | #{posts[i].likes.length}  &nbsp;
@@ -56,17 +50,11 @@ block content
                         -}
                     -}
                     -if(!posts[i].likes.length){
-                            //- a.btn.col(href=`/like/${posts[i]._id}`) 
-                            //-     p   0 &nbsp;
-                            //-         i.fa.fa-thumbs-o-up(aria-hidden='true')
                             button.like.btn.col( id=`${posts[i]._id}`)  
                                 .btn.col(class=`${posts[i]._id}`)
                                     | #{posts[i].likes.length}  &nbsp;
                                     i.fa.fa-thumbs-up(aria-hidden='true')
                     -}
-                        a.btn.col(href=`/comments/${posts[i]._id}`) 
-                            p Comments  &nbsp;
-                                i.fa.fa-comments(aria-hidden='true')
             br
 
         -}

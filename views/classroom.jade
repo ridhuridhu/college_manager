@@ -8,7 +8,7 @@ block head
     link(rel="stylesheet", href="../style/classroom.css")
 block content 
     p #{myclass}
-    p #{myclass._id}
+    p #{myclass._id} #{myclass.classmates.length}
     p     
         .displayBtn
             button.btn.btn-primary(id='notes') Notes
@@ -56,7 +56,7 @@ block content
         .card.notesBox
             h4.card-title #{myclass.notes_status[i]}
             a.btn.btn-success(href=`/classroom/download/${myclass.notes[i]}`)  Download
-                
+        br     
     -}
 
     script(src="../scripts/classRoom.js")

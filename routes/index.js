@@ -41,7 +41,7 @@ router.get("/post",ensureAuthenticated,(req,res)=>{
   res.render("post")
 });
 
-router.post("/post",upload.single("pic"),(req,res)=>{
+router.post("/post",ensureAuthenticated,upload.single("pic"),(req,res)=>{
   try {
     var post=new Post()
     post.status=req.body.status
@@ -94,12 +94,12 @@ router.get("/profile/:id",ensureAuthenticated,async (req,res)=>{
 //   })  
 // })
 
-router.get('/comments/:id',ensureAuthenticated,(req,res)=>{
-  Post.findById(req.params.id,(err,post)=>{
-    if(err) throw err;
-    res.render('comment',{post:post});
-  })
-})
+// router.get('/comments/:id',ensureAuthenticated,(req,res)=>{
+//   Post.findById(req.params.id,(err,post)=>{
+//     if(err) throw err;
+//     res.render('comment',{post:post});
+//   })
+// })
 
 router.post('/likeAjax',(req,res)=>{
   //console.log('like')
@@ -125,26 +125,33 @@ router.get('/join/:code',(req,res)=>{
   
   const code=req.params.code;
   const studentId=req.user._id;
-  //console.log( Classroom.findOneAndUpdate({code:code},{ $push:{ classmates:req.user._id }} ));
-  //Classroom.findOneAndUpdate({code:code},{ $push:{ classmates:req.user._id }} )
   Classroom.findOne({code:code},(err,myclass)=>{
-    if(err)  throw err;
-    myclass.classmates.push(studentId)
-    myclass.save(err=>{
     if(err) throw err;
-    User.findById(req.user._id,(err,user)=>{
-      if(err) throw err;
-      user.class.push(myclass._id)
-      user.save(err=>{
-          if (err) throw err;
-           })
-    })
-
-    })
-    res.render('classroom',{myclass:myclass})
-     
-
-  })
+    const allowToClass=(myclass.classmates).indexOf(req.user._id)>-1
+    
+ 
+    if(allowToClass){
+        res.render('classroom',{myclass:myclass})
+        //console.log(allowToClass,"allow to class");
+    }
+    else{
+        myclass.classmates.push(studentId)
+        myclass.save(err=>{
+            if(err) throw err;
+            
+            User.findById(studentId,(err,user)=>{
+                if(err) throw err;
+                user.class.push(myclass._id)
+                //console.log(user.name);
+                user.save(err=>{
+                    if (err) throw err;
+                    res.render('classroom',{myclass:myclass})
+                })
+            })
+        })
+    }
+   
+})
 })
 module.exports = router;
 
