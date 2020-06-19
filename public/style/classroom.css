@@ -1,0 +1,10 @@
+.announcementBox,.notesBox{
+    padding: 10px;
+    border-radius: 5px;
+    color: #f4f4f4;
+    border-top-right-radius:30px;
+    border: 0.7px solid silver;
+    width: 100%;
+    max-width: 580px;
+    margin: auto;
+}

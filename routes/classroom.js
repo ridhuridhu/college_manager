@@ -69,4 +69,57 @@ router.get('/:id',(req,res)=>{
     })
     
 })
+
+//file upload inside class Room 
+
+//multer middler ware 
+const multer=require("multer");
+const path = require('path');
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, 'uploads/');
+    },
+
+    // By default, multer removes file extensions so let's add them back
+    filename: function(req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+const upload=multer({ storage: storage })
+
+router.post('/notes/:id',upload.single('pic'),(req,res)=>{
+    var id=req.params.id
+    Classroom.findById(id,(err,classroom)=>{
+        if(err) throw err;
+        classroom.notes.push(req.file.filename)
+        classroom.notes_status.push(req.body.status)
+        classroom.save((err)=>{
+            if(err) throw err;
+            res.send("shared :)")
+        })
+
+    })
+});
+
+router.post('/announcement/:id',(req,res)=>{
+    var id=req.params.id
+    console.log(req.body.announcement);
+    Classroom.findById(id,(err,classroom)=>{
+        if(err) throw err;
+        classroom.announcement_name.push(req.user.name)
+        classroom.announcement.push(req.body.announcement)
+        classroom.save((err)=>{
+            if(err) throw err;
+            res.send("shared :)")
+        })
+
+    })
+})
+
+router.get('/download/:name',(req,res)=>{
+    var filename=req.params.name
+    //Hey this is hard coded Change it :) 
+    var filePathUploads=`D:/Index/inductions/Facebook-Clone/uploads/${filename}`    
+    res.download(filePathUploads);
+})
 module.exports = router;

@@ -3,6 +3,60 @@ extends layout
 block head
     
     title #{myclass.name}
+    link(rel="stylesheet", href="../style/layout.css")
     link(rel="stylesheet", href="../style/index.css")
+    link(rel="stylesheet", href="../style/classroom.css")
 block content 
     p #{myclass}
+    p #{myclass._id}
+    p     
+        .displayBtn
+            button.btn.btn-primary(id='notes') Notes
+            button.btn.btn-primary(id="announcement") Announcement
+    hr
+   
+    .card.notes
+        form(action=`/classroom/notes/${myclass._id}`, enctype='multipart/form-data', method='post')
+            div.form-group
+                label Select a Notes to Share within your Class :
+                input(type='file', name='pic')
+            div.form-group
+                textarea.form-control(type='text',rows="5",cols="5" ,name='status')
+            div.form-group
+                input.btn.btn-success(type='submit', name='btn_upload_profile_pic', id="shareNotes" value='Share')
+        br
+    .card.announcement
+        form(action=`/classroom/announcement/${myclass._id}`, method='post')
+            div.form-group
+                label() Announcement:
+                textarea.form-control(type='text',rows="5",cols="10" ,name='announcement')
+            div.form-group
+                input.btn.btn-success(type='submit', name='btn_upload_profile_pic', id="shareAnnouncement" value='Sent')
+        br
+    br
+    p Filter :
+        .displayBtn
+            button.btn.btn-primary(id="showAll") Clear Filter
+            button.btn.btn-primary(id="showNotes") Notes
+            button.btn.btn-primary(id="showAnnouncement")  Announcement
+    br
+    -myclass.announcement.reverse()
+    -myclass.announcement_name.reverse()
+    -for(var i=0;i<myclass.announcement.length;i++){
+   
+        .card.announcementBox
+            h4.card-title #{myclass.announcement_name[i]}
+            p.card-body #{myclass.announcement[i]}
+        br
+
+    -}
+    -myclass.notes.reverse()
+    -myclass.notes_status.reverse()
+    -for(var i=0;i<myclass.notes.length;i++){
+        .card.notesBox
+            h4.card-title #{myclass.notes_status[i]}
+            a.btn.btn-success(href=`/classroom/download/${myclass.notes[i]}`)  Download
+                
+    -}
+
+    script(src="../scripts/classRoom.js")

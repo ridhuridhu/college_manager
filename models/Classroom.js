@@ -11,6 +11,11 @@ const classroomSchema=new Schema({
     semester:{type:Number},
     cr:{type:Schema.Types.ObjectId,ref:"User"},
     link:{type:String},
+    notes:[{type:String}],
+    notes_status:[{type:String}],
+    announcement:[{type:String}],
+    announcement_name:[{type:String}],
+    
 
 });
 
