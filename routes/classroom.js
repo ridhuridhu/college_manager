@@ -83,7 +83,7 @@ router.get('/:id',(req,res)=>{
     const id=req.params.id
     Classroom.findById(id,function(err,myclass){
         if(err) throw err;
-        res.render('classroom',{myclass:myclass})
+        res.render('classroom',{myclass:myclass,user:req.user})
 
     })
     
@@ -115,7 +115,7 @@ router.post('/notes/:id',upload.single('pic'),(req,res)=>{
         classroom.notes_status.push(req.body.status)
         classroom.save((err)=>{
             if(err) throw err;
-            res.send("shared :)")
+            res.redirect(`/classroom/${req.params.id}`)
         })
 
     })
@@ -123,14 +123,14 @@ router.post('/notes/:id',upload.single('pic'),(req,res)=>{
 
 router.post('/announcement/:id',(req,res)=>{
     var id=req.params.id
-    console.log(req.body.announcement);
+    //console.log(req.body.announcement);
     Classroom.findById(id,(err,classroom)=>{
         if(err) throw err;
         classroom.announcement_name.push(req.user.name)
         classroom.announcement.push(req.body.announcement)
         classroom.save((err)=>{
             if(err) throw err;
-            res.send("shared :)")
+            res.redirect(`/classroom/${req.params.id}`)
         })
 
     })

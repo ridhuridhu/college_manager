@@ -40,6 +40,13 @@ block content
             button.btn.btn-primary(id="showNotes") Notes
             button.btn.btn-primary(id="showAnnouncement")  Announcement
     br
+    .chatScroll.card
+        ul
+            -for(var i=0;i<myclass.classmates.length;i++){
+                if(JSON.stringify(user._id)!==JSON.stringify(myclass.classmates[i]))
+                    li 
+                        a(href=`/direct/${myclass.classmates[i]}`) #{myclass.classmates_name[i]}
+            -}
     -myclass.announcement.reverse()
     -myclass.announcement_name.reverse()
     -for(var i=0;i<myclass.announcement.length;i++){
