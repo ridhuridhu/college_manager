@@ -6,18 +6,18 @@ block head
     link(rel="stylesheet", href="../style/classHome.css")
     
 block content
-    .container.topClassBox
+    .container.topClassBox(class="rellax" data-rellax-speed="10")
         button.btn.btn-primary.col(id="create") Create  Class
         button.btn.btn-primary.col(id="join") Join Class 
         
     br
-    p Filter :
+    p(class="rellax" data-rellax-speed="10") Filter :
         button.btn.btn-primary.col(id='clearFilter') Clear Filter  
         button.btn.btn-primary.col(id='showCreateRooms') Created Rooms
         button.btn.btn-primary.col(id='showJoinedRooms')  Joined Rooms
 
 
-    form.create(action='/classroom/createClass', method='post')
+    form.create(action='/classroom/createClass', method='post' class="rellax" data-rellax-speed="10")
         .form-group
             label Name of Class:
             input.form-control(type='text', name='name', placeholder='enter class name')
@@ -37,7 +37,7 @@ block content
     
     
    
-    form.join(action='/classroom/joinClass', method='post')
+    form.join(action='/classroom/joinClass', method='post' class="rellax" data-rellax-speed="10")
         .form-group
             label Class code :
             input.form-control(type='text', name='code', placeholder='enter class code to join')
@@ -47,11 +47,11 @@ block content
     -classrooms.reverse()
     
     if classrooms 
-        .createdRooms
-            h3 Class Rooms that You have Created 
+        .createdRooms(class="rellax" data-rellax-speed="7")
+            h3 Class Rooms that You have Created
             -for(var i=0;i<classrooms.length;i++){
                 if(JSON.stringify(user._id)===JSON.stringify(classrooms[i].cr))
-                    .card
+                    .card.subjectCard
                         h4.card-title #{classrooms[i].name}
                         p.card-body
                             | Semester :#{classrooms[i].semester}  Batch: #{classrooms[i].batch} 
@@ -61,22 +61,21 @@ block content
                             p Join via link 
                                 a(href=`${ classrooms[i].link }`) 127.0.0.1:3000#{classrooms[i].link}
                     br
-                    hr
             -}
     if(user.userClass)
         -user.userClass.reverse()
-        .joinRooms
+        .joinRooms(class="rellax" data-rellax-speed="4")
             h3 Class Rooms you have joined in 
             -for(var i=0;i<(user.userClass.length);i++){
                     -for(var j=0;j<classrooms.length;j++){
                         if(JSON.stringify(user.userClass[i])===JSON.stringify(classrooms[j]._id))
-                            .card
+                            .card.subjectCard
                                 h4.card-title #{classrooms[j].name}
                                 p.card-body
                                     | Semester :#{classrooms[j].semester}  Batch: #{classrooms[j].batch} 
-                                a(href=`/classroom/${classrooms[j]._id}`) Enter Class
+                                a.btn.btn-success(href=`/classroom/${classrooms[j]._id}`) Enter Class
                             br
-                            hr
+                            
                         
                 -}
             -}

@@ -1,23 +1,21 @@
 extends layout
 block head 
     link(rel="stylesheet", href="../style/index.css")
-    title College Manager        
+    title College Manager  
          
     
 block content
-    h2 #{user._id}
     .container
         br
-        .postCard
+        .postCard(class="rellax" data-rellax-speed="5")
             a(href='/post')
                 input(type='text', name='', placeholder=`What is on your mind, ${user.name}? ` )
         hr
         -posts.reverse()
-        p #{posts[0]}
         br
        
         -for(var i=0;i<posts.length;i++){
-            .postContainer
+            .postContainer(class="rellax" data-rellax-speed="5")
                 .top
                     a(href=`/profile/${posts[i].user_id}`) #{posts[i].name} 
                     br

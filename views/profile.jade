@@ -8,17 +8,17 @@ block head
 block content
     hr
     h1.text-center #{profile.name}
-    .postContainer
+    .postContainer(class="rellax" data-rellax-speed="7")
         form(action='/attendance/addSubject', method='POST')
             .form-group
                 label(for='') Add Subject
                 input.form-control(type='text', name='name', id='', placeholder='')
                 input.btn.btn-success(type='submit',id='addSubject' value='Add')
-    hr
-
+        hr
+    br
 
     if(attendance)
-        .attendanceBox
+        .attendanceBox(class="rellax" data-rellax-speed="5")
             -for(var k=0;k<attendance.length;k++){
                 .card(class=`${attendance[k]._id}`)
                     h4.card-title #{attendance[k].name}

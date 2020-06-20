@@ -2,3 +2,27 @@
     margin: auto;
     padding:10px;
 }
+.subjectCard{
+    border: 0.7px solid #f4f4f4;
+    padding: 10px;
+    border-radius: 10px;
+    margin: auto;
+    width: 100%;
+    max-width: 360px;
+}
+.subjectCard h4{
+    text-align: center;
+    transition: 1s ;
+    cursor: pointer;
+    color: #23527c;
+} 
+.subjectCard hr{
+    width: 25%;
+    border: 0.7px solid #23527c ;
+}
+.subjectCard h4:hover{
+    transform: rotate(360deg);
+}
+.subjectCard p{
+    padding: 12px;
+}
