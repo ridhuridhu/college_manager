@@ -9,7 +9,14 @@ block content
     .container.topClassBox
         button.btn.btn-primary.col(id="create") Create  Class
         button.btn.btn-primary.col(id="join") Join Class 
+        
     br
+    p Filter :
+        button.btn.btn-primary.col(id='clearFilter') Clear Filter  
+        button.btn.btn-primary.col(id='showCreateRooms') Created Rooms
+        button.btn.btn-primary.col(id='showJoinedRooms')  Joined Rooms
+
+
     form.create(action='/classroom/createClass', method='post')
         .form-group
             label Name of Class:
@@ -40,41 +47,40 @@ block content
     -classrooms.reverse()
     
     if classrooms 
-        h3 Class Rooms that You have Created 
-        -for(var i=0;i<classrooms.length;i++){
-            if(JSON.stringify(user._id)===JSON.stringify(classrooms[i].cr))
-                .card
-                    h4.card-title #{classrooms[i].name}
-                    p.card-body
-                        | Semester :#{classrooms[i].semester}  Batch: #{classrooms[i].batch} 
-                    
-                    if(JSON.stringify(user._id)===JSON.stringify(classrooms[i].cr))
-                        p Class Code: #{classrooms[i].code}
-                        p Join via link 
-                            a(href=`${ classrooms[i].link }`) 127.0.0.1:3000#{classrooms[i].link}
-                br
-                hr
-        -}
+        .createdRooms
+            h3 Class Rooms that You have Created 
+            -for(var i=0;i<classrooms.length;i++){
+                if(JSON.stringify(user._id)===JSON.stringify(classrooms[i].cr))
+                    .card
+                        h4.card-title #{classrooms[i].name}
+                        p.card-body
+                            | Semester :#{classrooms[i].semester}  Batch: #{classrooms[i].batch} 
+                        
+                        if(JSON.stringify(user._id)===JSON.stringify(classrooms[i].cr))
+                            p Class Code: #{classrooms[i].code}
+                            p Join via link 
+                                a(href=`${ classrooms[i].link }`) 127.0.0.1:3000#{classrooms[i].link}
+                    br
+                    hr
+            -}
     if(user.userClass)
         -user.userClass.reverse()
-        h3 Class you have joined in 
-        -for(var i=0;i<(user.userClass.length);i++){
-                -for(var j=0;j<classrooms.length;j++){
-                    if(JSON.stringify(user.userClass[i])===JSON.stringify(classrooms[j]._id))
-                        .card
-                            h4.card-title #{classrooms[j].name}
-                            p.card-body
-                                | Semester :#{classrooms[j].semester}  Batch: #{classrooms[j].batch} 
-                            a(href=`/classroom/${classrooms[j]._id}`) Enter Class
-                        br
-                        hr
-                    
+        .joinRooms
+            h3 Class Rooms you have joined in 
+            -for(var i=0;i<(user.userClass.length);i++){
+                    -for(var j=0;j<classrooms.length;j++){
+                        if(JSON.stringify(user.userClass[i])===JSON.stringify(classrooms[j]._id))
+                            .card
+                                h4.card-title #{classrooms[j].name}
+                                p.card-body
+                                    | Semester :#{classrooms[j].semester}  Batch: #{classrooms[j].batch} 
+                                a(href=`/classroom/${classrooms[j]._id}`) Enter Class
+                            br
+                            hr
+                        
+                -}
             -}
-        -}
-    
-    
-        //join to each class 
-        //show each class in new jade 
+        
         
     script(src="../scripts/classHome.js")
 
