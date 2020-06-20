@@ -13,7 +13,12 @@ body{
     background-color:#141d26;
     color: #f4f4f4;
     direction: ltr;
+    overflow: auto;
     
+}
+h3{
+    text-align: center;
+    color: #286090;
 }
 .postCard a input{
     width: 100%;

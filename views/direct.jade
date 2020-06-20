@@ -8,16 +8,20 @@ block content
     
     if(!private)
         p #{users[0]}
+        .chatScroll.card
+            ul
         -for(var i=0;i<users.length;i++){
             -if(JSON.stringify(user._id)!== JSON.stringify(users[i]._id))
-                a(href=`/direct/${users[i]._id}`) #{users[i].name}
-                br
+                li
+                    a(href=`/direct/${users[i]._id}`) #{users[i].name}
         -}
     
     if(private)
         p #{otherUser}
         .card
             input#room(type="text" value=`${otherUser._id}:${user._id}`)
+
+        hr
 
     #Chat.container
     form.card()
