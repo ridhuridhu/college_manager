@@ -24,11 +24,20 @@ router.post('/createClass',(req,res)=>{
     classRoom.semester=req.body.semester
     classRoom.cr=req.user._id
     classRoom.code=uuid.generate();
-    classRoom.classmates=req.user._id
+    classRoom.classmates.push(req.user._id)
+    classRoom.classmates_name.push(req.user.name)
     classRoom.link=`/join/${classRoom.code}`
     classRoom.save((err)=>{
         if(err) throw err;
-        res.redirect('/classroom')
+        User.findById(req.user._id,(err,user)=>{
+            if(err) throw err;
+            user.userClass.push(classRoom._id)
+            user.save(err=>{
+                if(err) throw err;
+                res.redirect('/classroom')
+            })  
+        })
+      
     })
     
 });
@@ -42,21 +51,22 @@ router.post('/joinClass',(req,res)=>{
     //.findOneAndUpdate({code:code},{ $push:{ classmates:studentId }} )
     Classroom.findOne({code:code},(err,myclass)=>{
         if(err) throw err;
-        const allowToClass=(myclass.classmates).indexOf(req.user._id)>-1
         
-     
+        const allowToClass=(myclass.classmates).indexOf(req.user._id)>-1
         if(allowToClass){
             res.render('classroom',{myclass:myclass})
-            //console.log(allowToClass,"allow to class");
+            console.log(allowToClass,"allow to class");
+            console.log(req.user.name);
         }
         else{
             myclass.classmates.push(studentId)
+            myclass.classmates_name.push(req.user.name)
             myclass.save(err=>{
                 if(err) throw err;
                 
                 User.findById(studentId,(err,user)=>{
                     if(err) throw err;
-                    user.class.push(myclass._id)
+                    user.userClass.push(myclass._id)
                     //console.log(user.name);
                     user.save(err=>{
                         if (err) throw err;

@@ -1,16 +1,14 @@
 
-<h1 textAlgin='center'>👩🏻‍🎓 College Manger 👨🏻‍🎓 </h1>
-
-
+<h1 align="center">👩🏻‍🎓 College Manger 👨🏻‍🎓 </h1>
 <hr>
 <br>
-<h1> Common setup </h1>
+<h1 align="center" >🔨 Common setup 🔨 </h1>
 <hr>
 Clone the repo and install the dependencies.
 
 ```bash
 git clone https://github.com/ridhuridhu/College-Manager.git
-cd Your_are_Invited
+cd College-Manager
 ```
 
 ```bash

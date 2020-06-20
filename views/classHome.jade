@@ -39,9 +39,6 @@ block content
         hr  
     -classrooms.reverse()
     if classrooms 
-        
-        p #{classrooms}
-        p #{user}
         -for(var i=0;i<classrooms.length;i++){
             if(JSON.stringify(user._id)===JSON.stringify(classrooms[i].cr))
                 .card
@@ -56,17 +53,18 @@ block content
                 br
                 hr
         -}
-    h4 Class
-    p #{user.class}
-    -for(var i=0;i<(user.class).length;i++){
+    p #{user.userClass} hiiiiiiiiiiii
+    p #{classrooms} cl
+    -for(var i=0;i<(user.userClass.length);i++){
             -for(var j=0;j<classrooms.length;j++){
-                .card
-                    h4.card-title #{classrooms[j].name}
-                    p.card-body
-                        | Semester :#{classrooms[j].semester}  Batch: #{classrooms[j].batch} 
-                    a(href=`/classroom/${classrooms[j]._id}`) Enter Class
-            br
-            hr
+                if(JSON.stringify(user.userClass[i])===JSON.stringify(classrooms[j]._id))
+                    .card
+                        h4.card-title #{classrooms[j].name}
+                        p.card-body
+                            | Semester :#{classrooms[j].semester}  Batch: #{classrooms[j].batch} 
+                        a(href=`/classroom/${classrooms[j]._id}`) Enter Class
+                    br
+                    hr
                 
         -}
     -}

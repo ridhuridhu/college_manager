@@ -11,7 +11,7 @@ const userSchema = new Schema({
   key:{type:Number,unique:true,required:false},
   Date:{type:Date,default:Date.now()},
   post:[{type:Schema.Types.ObjectId,ref:"Post"}],
-  class:[{type:Schema.Types.ObjectId,ref:"User"}],
+  userClass:[{type:Schema.Types.ObjectId,ref:"User"}],
 
 });
 

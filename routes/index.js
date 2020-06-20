@@ -134,12 +134,13 @@ router.get('/join/:code',(req,res)=>{
     }
     else{
         myclass.classmates.push(studentId)
+        myclass.classmates_name.push(req.user.name)
         myclass.save(err=>{
             if(err) throw err;
             
             User.findById(studentId,(err,user)=>{
                 if(err) throw err;
-                user.class.push(myclass._id)
+                user.userClass.push(myclass._id)
                 //console.log(user.name);
                 user.save(err=>{
                     if (err) throw err;
