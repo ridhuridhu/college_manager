@@ -101,7 +101,7 @@ router.get("/profile/:id",ensureAuthenticated,async (req,res)=>{
 //   })
 // })
 
-router.post('/likeAjax',(req,res)=>{
+router.post('/likeAjax',ensureAuthenticated,(req,res)=>{
   //console.log('like')
   Post.findByIdAndUpdate(req.body.id,{$push:{likes:req.user._id}},(err)=>{
     if(err) throw err;
@@ -109,7 +109,7 @@ router.post('/likeAjax',(req,res)=>{
   })
 })
 
-router.post('/unlikeAjax',(req,res)=>{
+router.post('/unlikeAjax',ensureAuthenticated,(req,res)=>{
   //console.log('unlike')
   Post.findByIdAndUpdate(req.body.id,{$pull:{"likes":req.user._id}},(err)=>{
     if(err) throw err;
@@ -120,7 +120,7 @@ router.post('/unlikeAjax',(req,res)=>{
 
 
 
-router.get('/join/:code',(req,res)=>{
+router.get('/join/:code',ensureAuthenticated,(req,res)=>{
   // console.log(req.params);
   
   const code=req.params.code;

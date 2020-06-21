@@ -17,7 +17,7 @@ router.get('/',(req,res)=>{
 
     })
 //{ name: 's', batch: 's', semester: 's' }
-router.post('/createClass',(req,res)=>{
+router.post('/createClass',ensureAuthenticated,(req,res)=>{
     var classRoom=new Classroom()
     classRoom.name=req.body.name
     classRoom.batch=req.body.batch
@@ -42,7 +42,7 @@ router.post('/createClass',(req,res)=>{
     
 });
 
-router.post('/joinClass',(req,res)=>{
+router.post('/joinClass',ensureAuthenticated,(req,res)=>{
   // console.log(req.body);
     
     const code=req.body.code;
@@ -79,7 +79,7 @@ router.post('/joinClass',(req,res)=>{
     })
 })
 
-router.get('/:id',(req,res)=>{
+router.get('/:id',ensureAuthenticated,(req,res)=>{
     const id=req.params.id
     Classroom.findById(id,function(err,myclass){
         if(err) throw err;
@@ -107,7 +107,7 @@ const storage = multer.diskStorage({
 });
 const upload=multer({ storage: storage })
 
-router.post('/notes/:id',upload.single('pic'),(req,res)=>{
+router.post('/notes/:id',ensureAuthenticated,upload.single('pic'),(req,res)=>{
     var id=req.params.id
     Classroom.findById(id,(err,classroom)=>{
         if(err) throw err;
@@ -121,7 +121,7 @@ router.post('/notes/:id',upload.single('pic'),(req,res)=>{
     })
 });
 
-router.post('/announcement/:id',(req,res)=>{
+router.post('/announcement/:id',ensureAuthenticated,(req,res)=>{
     var id=req.params.id
     //console.log(req.body.announcement);
     Classroom.findById(id,(err,classroom)=>{
@@ -136,7 +136,7 @@ router.post('/announcement/:id',(req,res)=>{
     })
 })
 
-router.get('/download/:name',(req,res)=>{
+router.get('/download/:name',ensureAuthenticated,(req,res)=>{
     var filename=req.params.name
     //Hey this is hard coded Change it :) 
     var filePathUploads=`D:/Index/inductions/Facebook-Clone/uploads/${filename}`    

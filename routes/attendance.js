@@ -3,8 +3,11 @@ const User=require("../models/User")
 const Attendance=require('../models/Attendance');
 const { findByIdAndDelete } = require('../models/User');
 
+//protect routes middleware
+const {ensureGuest, ensureAuthenticated} = require('../libs/auth');
+
 //add subject card
-router.post('/addSubject',(req,res)=>{
+router.post('/addSubject',ensureAuthenticated,(req,res)=>{
     var subject=new Attendance()
     subject.name=req.body.name;
     subject.user=req.user._id;
@@ -18,7 +21,7 @@ router.post('/addSubject',(req,res)=>{
 });
 
 //ajax del Button
-router.post('/delBox',(req,res)=>{
+router.post('/delBox',ensureAuthenticated,(req,res)=>{
     var id=(req.body.id);
     Attendance.findByIdAndRemove((id),(err,done)=>{
         if(err) throw err;
@@ -29,7 +32,7 @@ router.post('/delBox',(req,res)=>{
    
 })
 
-router.post('/present',(req,res)=>{
+router.post('/present',ensureAuthenticated,(req,res)=>{
     Attendance.findById((req.body.id),(err,subject)=>{
         if(err) throw err;
         const NewSubject={}
@@ -61,7 +64,7 @@ router.post('/present',(req,res)=>{
     }); 
 });
 
-router.post('/absent',(req,res)=>{
+router.post('/absent',ensureAuthenticated,(req,res)=>{
     Attendance.findById((req.body.id),(err,subject)=>{
         if(err) throw err;
         const NewSubject={}
