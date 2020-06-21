@@ -20,17 +20,31 @@
 
 
 }
+.ChatBottom{
+   display: flex;
+}
+.ChatBottom .btn{
+    flex: 1;
+}
+.ChatBottom .form-control{
+    flex: 5;
+}
+
+
 .speech-bubble {
     position: relative;
     background: #23527c;
     border-radius: .4em;
     padding: 10px;
-    border: 0.5px dotted #23527c;
+    border: 0.5px solid #141d26;
     margin-left: 15px;
     width: 100%;
     max-width: 360px;
 }
-
+#msgBox{
+    background-color: #f4f4f4;
+    color: #23527c;
+}
 .speech-bubble:after {
     content: '';
     position: absolute;

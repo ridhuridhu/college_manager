@@ -24,9 +24,9 @@ block content
         hr
 
     #Chat.container
-    form.card()
-            input#msgBox.form-control(name='', rows='')
-            button#sendBtn.btn.btn-success Send
+    form.ChatBottom.container
+        input#msgBox.form-control
+        button#sendBtn.btn.btn-success Send
     script(src="/socket.io/socket.io.js")
     link(rel="stylesheet", href="../style/direct.css")
     script(src="../scripts/direct.js")
