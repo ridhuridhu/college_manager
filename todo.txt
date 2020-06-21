@@ -1,4 +1,9 @@
-NOT_DONE=[]
+NOT_DONE=[
+    Manager Profile {
+        =>create a about page for our BABY Manager :)
+        
+    }
+]
    
 DONE=[
     2.Chat {
