@@ -8,6 +8,7 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 const path = require('path');
 const moment=require("moment");
+const flash = require('connect-flash');
 //routes
 const direct=require("./routes/direct")
 const attendance=require('./routes/attendance')
@@ -39,6 +40,7 @@ app.use((req, res, next) => {
   res.locals.errors = [];
   next();
 })
+app.use(flash());
 // static files
 app.use(express.static(path.join(__dirname, '/public')));
 // engine

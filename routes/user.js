@@ -6,13 +6,14 @@ const {ensureGuest, ensureAuthenticated} = require('../libs/auth');
 
 
 router.get('/login', ensureGuest, (req,res)=>{
-    res.render("login");
+    res.render("login",{message:req.flash('error')});
 });
 
 router.post('/login', (req,res,next)=>{
     passport.authenticate('local', {
         successRedirect: '/',
-        failureRedirect: 'login'
+        failureRedirect: 'login',
+        failureFlash : true
       })(req, res, next);
 });
 
@@ -41,7 +42,7 @@ router.post('/register', (req,res)=>{
       User.findOne({email: req.body.email})
         .then(user => {
           if (user) {
-            errors.push({text: 'User already exist!'});
+            errors.push({text: 'Email already exist!'});
             res.render('register', {errors, name: '', email: '', password: '', rpassword: ''});
           } else {
             const newUser = new User({

@@ -5,8 +5,12 @@ block head
     title #{title}
     link(rel="stylesheet", href="../style/index.css")
 block content
+    if(message)
+        .container.mt-5
+            .alert.alert-danger.error #{message}
     .container
-            .card.card-body
+        .card
+            .card-body
                 h3.text-center Account Login
                 form(action='/user/login', method='post')
                     .form-group
