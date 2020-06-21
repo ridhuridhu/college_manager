@@ -67,23 +67,26 @@ const room="1234"
 //  post.date=moment().format('MMMM Do YYYY, h:mm:ss a')
 io.on("connection",(socket)=>{
   //when users connects
-  socket.emit("message"," You have joined the Chat");
+  socket.emit("message",{
+    username:"Manager",
+    msg:" send your first message to join conversation 💬 "
+  });
   socket.on("room",(room)=>{
     socket.join(room)    
     
   });
-  //when users Dis-connects
-  socket.on("disconnect",()=>{
+  // //when users Dis-connects
+  // socket.on("disconnect",()=>{
 
-    io.sockets.in(room).emit("message",("A user has left the chat"));
+  //   io.sockets.in(room).emit("message",("A user has left the chat"));
   
-  });
+  // });
 
   socket.on("message",(message)=>{
-     // console.log(message)
+    //console.log(message)
     //console.log(message.room,message.msg)
     // console.log(io.sockets)
-    io.sockets.in(message.room).emit('message',message.msg)
+    io.sockets.in(message.room).emit('message',message)
     //io.emit("message",message);
   
 })

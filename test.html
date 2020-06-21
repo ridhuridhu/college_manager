@@ -13,9 +13,44 @@
     <br>
     <br>
     <br>
- 
+<div class="speech-bubble">
+    <h5 class="text-muted">NAME</h5>
+    <p>
+        Lorem ipsum dolor sit amet c
+        onsectetur adipisicing elit. Numqua
+        m provident dignissimos porro unde co
+        rrupti inventore placeat a omnis, iure praesentium. Maiores aut amet rem ducimus dicta doloremque deserunt minus praesentium.
+    </p>
+   
+</div>
 </body>
 </html>
+<style>
+    .speech-bubble {
+        position: relative;
+        background: #f4f4f4;
+        border-radius: .4em;
+        padding: 10px;
+        border: 0.5px dotted #23527c;
+        width: 100%;
+        max-width: 360px;
+        margin: auto;
+    }
+    
+    .speech-bubble:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 0;
+        height: 0;
+        border: 24px solid transparent;
+        border-right-color: #23527c;
+        border-left: 0;
+        margin-top: -24px;
+        margin-left: -24px;
+    }
+</style>
 <script>
 
 console.log(Date.now);

@@ -6,9 +6,11 @@
     border: 0.5px solid silver;
     margin: auto;
     padding: 10px;
+    scrollbar-width: 2px;
+    scrollbar-color: #23527c #141d26;
 
 }
-.chatScroll{
+ .chatScroll{        /*list view of all users  */
     width: 100%;
     height: 100%;
     max-height: 200px;
@@ -17,4 +19,28 @@
     margin: auto;
 
 
+}
+.speech-bubble {
+    position: relative;
+    background: #23527c;
+    border-radius: .4em;
+    padding: 10px;
+    border: 0.5px dotted #23527c;
+    margin-left: 15px;
+    width: 100%;
+    max-width: 360px;
+}
+
+.speech-bubble:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 24px solid transparent;
+    border-right-color: #23527c;
+    border-left: 0;
+    margin-top: -24px;
+    margin-left: -24px;
 }

@@ -1,4 +1,5 @@
 
+$(".userCard").hide();
 function arrayRotate(arr) {
     var temp=arr[25];
     for(var i=26;i<arr.length;i++){
@@ -26,30 +27,42 @@ const socket=io();
    
     const sendBtn=document.getElementById("sendBtn");
     socket.on("message",(message)=>{
+        //console.log(message)
         outputMessage(message);
     });
 
     sendBtn.addEventListener("click",(e)=>{
         e.preventDefault();
         const msgBox=document.getElementById("msgBox");
+        const username=document.getElementById("username").value
+
         const msg=msgBox.value;
-        //emit to server
-        //console.log(room)
-        socket.emit("room",room)
-        socket.emit("message",{msg,room});
-        
-        if(window.location.pathname[10]){
-            socket.emit("room1",room1)
+        if(msg){
+            socket.emit("room",room)
+            socket.emit("message",{msg,room,username});
+            
+            if(window.location.pathname[10]){
+                socket.emit("room1",room1)
+            }
         }
-     
         msgBox.value="";
         msgBox.focus();
     });
 
     function outputMessage(message){
-       // console.log(message)
-        const div =document.createElement("p");
-        div.innerHTML=`${message}`;
-        document.getElementById("Chat").appendChild(div);
+       //console.log(!message.username)
+        const div= `<div class="speech-bubble">
+                        <p class="text-muted">
+                            ${message.username}
+                        </p>
+                        <p>
+                            ${message.msg}
+                        </p>
+                    </div>
+                    <br>
+                    `
+                    //console.log(div)
+        //document.getElementById("Chat").appendChild(div);
+        $("#Chat").append(div);
         document.getElementById("Chat").scrollTop=document.getElementById("Chat").scrollHeight;
     }
