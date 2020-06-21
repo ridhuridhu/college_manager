@@ -4,8 +4,7 @@ NOT_DONE=[
         =>add JQuery fadeOut effect
         =>to all pages like login,register,
 
-    }
-]
+    },
 DONE=[
     2.Chat {
         =>make to chats(redirect) with classmates in classRoom

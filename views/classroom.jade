@@ -7,12 +7,11 @@ block head
     link(rel="stylesheet", href="../style/index.css")
     link(rel="stylesheet", href="../style/classroom.css")
 block content 
-    p #{myclass}
-    p #{myclass._id} #{myclass.classmates.length}
-    p     
-        .displayBtn
-            button.btn.btn-primary(id='notes') Notes
-            button.btn.btn-primary(id="announcement") Announcement
+    br
+    p      
+        
+        button.btn.btn-primary(id='notes') Notes
+        button.btn.btn-primary(id="announcement") Announcement
     hr
    
     .card.notes
@@ -35,10 +34,10 @@ block content
         br
     br
     p Filter :
-        .displayBtn
-            button.btn.btn-primary(id="showAll") Clear Filter
-            button.btn.btn-primary(id="showNotes") Notes
-            button.btn.btn-primary(id="showAnnouncement")  Announcement
+       
+        button.btn.btn-primary(id="showAll") Clear Filter
+        button.btn.btn-primary(id="showNotes") Notes
+        button.btn.btn-primary(id="showAnnouncement")  Announcement
     br
     .chatScroll.card
         ul

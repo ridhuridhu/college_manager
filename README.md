@@ -23,8 +23,8 @@ To start the express server, run the following
 npm start 
 ```
 
-<p>
+
 Open [http://localhost:3000](http://localhost:3000) and take a look around 🚶🏻‍♀️🏃🏻‍♀️
-</p>
+
 <hr>
 <br>

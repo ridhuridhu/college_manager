@@ -7,7 +7,6 @@ block content
     hr
     
     if(!private)
-        p #{users[0]}
         .chatScroll.card
             ul
         -for(var i=0;i<users.length;i++){
@@ -17,7 +16,7 @@ block content
         -}
     
     if(private)
-        p #{otherUser}
+        p #{otherUser.name}
         .card
             input#room(type="text" value=`${otherUser._id}:${user._id}`)
 

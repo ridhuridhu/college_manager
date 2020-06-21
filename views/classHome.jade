@@ -11,10 +11,6 @@ block content
         button.btn.btn-primary.col(id="join") Join Class 
         
     br
-    p(class="rellax" data-rellax-speed="10") Filter :
-        button.btn.btn-primary.col(id='clearFilter') Clear Filter  
-        button.btn.btn-primary.col(id='showCreateRooms') Created Rooms
-        button.btn.btn-primary.col(id='showJoinedRooms')  Joined Rooms
 
 
     form.create(action='/classroom/createClass', method='post' class="rellax" data-rellax-speed="10")
@@ -32,10 +28,6 @@ block content
         .form-group
         input.btn.btn-primary(type='submit', width="100%" value='create Class')
         hr
-    
-    
-    
-    
    
     form.join(action='/classroom/joinClass', method='post' class="rellax" data-rellax-speed="10")
         .form-group
@@ -45,6 +37,12 @@ block content
             input.btn.btn-primary(type='submit', width="100%" value='Join Class')
         hr  
     -classrooms.reverse()
+    br
+    p(class="rellax" data-rellax-speed="10") Filter :
+        button.btn.btn-primary.col(id='clearFilter') Clear Filter  
+        button.btn.btn-primary.col(id='showCreateRooms') Created Rooms
+        button.btn.btn-primary.col(id='showJoinedRooms')  Joined Rooms
+    br
     
     if classrooms 
         .createdRooms(class="rellax" data-rellax-speed="7")
@@ -53,6 +51,7 @@ block content
                 if(JSON.stringify(user._id)===JSON.stringify(classrooms[i].cr))
                     .card.subjectCard
                         h4.card-title #{classrooms[i].name}
+                        hr
                         p.card-body
                             | Semester :#{classrooms[i].semester}  Batch: #{classrooms[i].batch} 
                         
@@ -71,6 +70,7 @@ block content
                         if(JSON.stringify(user.userClass[i])===JSON.stringify(classrooms[j]._id))
                             .card.subjectCard
                                 h4.card-title #{classrooms[j].name}
+                                hr
                                 p.card-body
                                     | Semester :#{classrooms[j].semester}  Batch: #{classrooms[j].batch} 
                                 a.btn.btn-success(href=`/classroom/${classrooms[j]._id}`) Enter Class
