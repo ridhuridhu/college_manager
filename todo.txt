@@ -1,13 +1,14 @@
-NOT_DONE=[
-    1.Validation message {
-        =>using bootstrap toast
-        =>add JQuery fadeOut effect
-        =>to all pages like login,register,
-
-    },
+NOT_DONE=[]
+   
 DONE=[
     2.Chat {
         =>make to chats(redirect) with classmates in classRoom
     
+    },
+     1.Validation message {
+        =>using bootstrap toast
+        =>add JQuery fadeOut effect
+        =>to all pages like login,register,
+
     },
 ]
