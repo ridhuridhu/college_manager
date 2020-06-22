@@ -20,6 +20,9 @@
 
 
 }
+#chatSearch{
+    width: 50%;
+}
 .ChatBottom{
    display: flex;
 }

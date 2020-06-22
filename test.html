@@ -19,7 +19,7 @@
         <input  type="submit" value="Send" class="btn btn-success">
       
    </div>
-        
+ 
        
 </div>
 </body>
@@ -58,6 +58,14 @@
 </style>
 <script>
 
-console.log(Date.now);
+    $("#chatSearch").keyup(function (e) { 
+    
+        const searchInput=document.getElementById("chatSearch")
+        let key =searchInput.value
+        for(var i=0;i<`${users.length}`;i++){
+            console.log(users[i].name)
+        }
+    });
+    
 
 </script>

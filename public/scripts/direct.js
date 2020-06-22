@@ -1,4 +1,17 @@
 
+//SEARCH BAR
+// $("#chatSearch").keyup(function (e) { 
+    
+//     const searchInput=document.getElementById("chatSearch")
+//     let key =searchInput.value
+//     for(var i=0;i<`${users.length}`;i++){
+//         console.log(users[i].name)
+//     }
+// });
+
+
+
+
 $(".userCard").hide();
 function arrayRotate(arr) {
     var temp=arr[25];

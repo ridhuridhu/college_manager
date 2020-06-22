@@ -152,5 +152,19 @@ router.get('/join/:code',ensureAuthenticated,(req,res)=>{
    
 })
 })
+
+//SEARCH BAR
+// const _=require("lodash")
+// router.get("/search",ensureAuthenticated,(req,res,next)=>{
+//   //console.log(req.query)
+//   // const myName=req.query.id;
+//     User.find({},(err,users)=>{
+//       if(err) throw err;
+//       users.map(user=>{
+//         res.send(user.name)
+
+//       })
+//     });
+// })
 module.exports = router;
 

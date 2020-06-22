@@ -8,6 +8,9 @@ block content
     
     if(!private)
         p Welcome to Global Chat 🌍
+        //-     input.form-control(type="text", id="chatSearch",placeholder='Search')
+        //-     //- input.form-control.mr-sm-2(type='text',id="chatSearch" placeholder='Search', aria-label='Search')
+        //- .showSearchList
         .chatScroll.card
             ul
         -for(var i=0;i<users.length;i++){
@@ -27,6 +30,7 @@ block content
     form.ChatBottom.container
         input#msgBox.form-control
         button#sendBtn.btn.btn-success Send
+    hr
     script(src="/socket.io/socket.io.js")
     link(rel="stylesheet", href="../style/direct.css")
     script(src="../scripts/direct.js")
