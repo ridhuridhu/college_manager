@@ -21,5 +21,25 @@ router.get('/:id',ensureAuthenticated,(req,res)=>{
 });
 
 
-
+router.post("/search",async(req,res)=>{
+  //console.log(req.body.name);
+  const nameFind=req.body.name;
+  var div="<div class='userCard'>" 
+  User.find({},(err,users)=>{
+    if(err)  throw err;
+    users.map(user=>{
+      const myName=(user.name).search(nameFind)
+      if(myName>=0){
+        // console.log(user.name);
+        div+=`<a class="userList" href=/direct/${user._id}>
+            ${user.name}
+            </a>`
+            
+      }
+    })
+    div+="</div>";
+    res.send(div);
+  })
+ 
+})
 module.exports = router;

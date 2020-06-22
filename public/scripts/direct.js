@@ -1,13 +1,17 @@
 
 //SEARCH BAR
-// $("#chatSearch").keyup(function (e) { 
+$("#chatSearch").keyup(function (e) { 
     
-//     const searchInput=document.getElementById("chatSearch")
-//     let key =searchInput.value
-//     for(var i=0;i<`${users.length}`;i++){
-//         console.log(users[i].name)
-//     }
-// });
+    const searchInput=document.getElementById("chatSearch")
+    // console.log(searchInput.value)
+    $.post("/direct/search",{name:searchInput.value},(data)=>{
+        if(data){
+            // console.log(data);
+            $(".showSearchList").html(data);
+        }
+    })
+
+ });
 
 
 
