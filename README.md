@@ -20,17 +20,19 @@
 <br>
 <img width="500px" height="500px" src="https://github.com/ridhuridhu/College-Manager/blob/master/screenshots/enterClass.png"/>
 <br>
-<p align='center'> Students can share any important <b>📢 announcement 📢</b> and  <b>📝 class notes 📝</b> within classmates  </p>
+<p align='center'> Students can share any important <b>📢 announcement </b> and  <b>📝 class notes</b> within classmates  </p>
 <img width="500px"  height="500px" src="https://github.com/ridhuridhu/College-Manager/blob/master/screenshots/classlog.png"/>
 <br>
-<p align="center">Students can <b>📤📥 Download</b> notes and make use of them !  </p>
+<p align="center">Students can <b>📥 Download</b> notes and make use of them !  </p>
 <img width="500px" height="500px" src="https://github.com/ridhuridhu/College-Manager/blob/master/screenshots/downloadnotes.png"/>
 <br>
 <p align="center"> students can chat with otherstudents </p>
-<img src="https://github.com/ridhuridhu/College-Manager/blob/master/screenshots/Privatechatsystem.png">
+<img src="https://github.com/ridhuridhu/College-Manager/blob/master/screenshots/privateChat.png">
 <br>
 
-
+<h1 align="center"> 💙
+ <hr>
+ <img src="https://github.com/ridhuridhu/College-Manager/blob/master/screenshots/love.png">
 <hr>
 <br>
 <h1 align="center">🔨 Common setup 🔨 </h1>
