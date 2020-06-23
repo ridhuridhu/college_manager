@@ -12,6 +12,12 @@ const userSchema = new Schema({
   Date:{type:Date,default:Date.now()},
   post:[{type:Schema.Types.ObjectId,ref:"Post"}],
   userClass:[{type:Schema.Types.ObjectId,ref:"User"}],
+  followers:[{type:Schema.Types.ObjectId,ref:"USer"}],
+  followersName:[{type:String}],
+  following:[{type:Schema.Types.ObjectId,ref:"User"}],
+  followingName:[{type:String}],
+  
+
 
 });
 

@@ -52,4 +52,25 @@ $('.unlike').click(function(){
         //console.log(id)
     })
 });
+$(".postBox").hide();
 
+//post Container
+$("#postContainer").click(function(){
+    console.log("post");
+    $(this).hide();
+    $(".postBox").show();
+})
+
+//search bar //SEARCH BAR
+$("#chatSearch").keyup(function (e) { 
+    
+    const searchInput=document.getElementById("chatSearch")
+    // console.log(searchInput.value)
+    $.post("/search",{name:searchInput.value},(data)=>{
+        if(data){
+            // console.log(data);
+            $(".showSearchList").html(data);
+        }
+    })
+
+ });

@@ -46,7 +46,8 @@ block content
     
     if classrooms 
         .createdRooms(class="rellax" data-rellax-speed="7")
-            h3 Class Rooms that You have Created
+            if (user.userClass.length)
+                h3 Class Rooms that You have Created
             -for(var i=0;i<classrooms.length;i++){
                 if(JSON.stringify(user._id)===JSON.stringify(classrooms[i].cr))
                     .card.subjectCard
@@ -60,11 +61,13 @@ block content
                             p Join via link 
                                 a(href=`${ classrooms[i].link }`) 127.0.0.1:3000#{classrooms[i].link}
                     br
+
             -}
     if(user.userClass)
         -user.userClass.reverse()
         .joinRooms(class="rellax" data-rellax-speed="4")
-            h3 Class Rooms you have joined in 
+            if (user.userClass.length)
+                h3 Class Rooms you have joined in 
             -for(var i=0;i<(user.userClass.length);i++){
                     -for(var j=0;j<classrooms.length;j++){
                         if(JSON.stringify(user.userClass[i])===JSON.stringify(classrooms[j]._id))

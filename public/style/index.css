@@ -38,3 +38,30 @@ input{
     display: none;
     visibility: hidden;
 }
+
+/* search result  */
+
+.userCard{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.userList{
+    border: 0.5px solid #23527c;
+    padding: 5px;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+    justify-content: left;
+    margin-top: 3px;
+    color: #f4f4f4;
+    float: left;
+}
+.userList :hover{
+    color: #23527c;
+    text-decoration: none;
+}
+#chatSearch{
+    width: 70%;
+}

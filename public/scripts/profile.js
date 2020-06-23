@@ -1,4 +1,29 @@
+//follow ajax
+$(".follow").click(function(){
+    var followers=document.getElementById("followers").innerHTML
+    followers=JSON.parse(followers)+1
+    $("#followers").html(followers)
+    $(this).removeClass("btn-success")
+    $(this).addClass("btn-danger")
+    $(this).html(`unfollow`)
+    $.post("/follow",{id:this.id},(data)=>{
+        //console.log("followed")
+    });
+});
 
+$(".unfollow").click(function(){
+    var followers=document.getElementById("followers").innerHTML
+    followers=JSON.parse(followers)-1
+    $("#followers").html(followers)
+    $(this).removeClass("btn-danger")
+    $(this).addClass("btn-success")
+    $(this).html(`Follow`)
+    $.post('/unfollow',{id:this.id},(data)=>{
+        //console.log("unfollowed");
+    })
+});
+
+//Attendance Ajax starts Here 
 $('.delBox').click(function () { 
     // (this.innerHTML=``)
     $(this).hide();

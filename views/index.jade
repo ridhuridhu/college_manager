@@ -6,11 +6,28 @@ block head
     
 block content
     .container
+        p
+            input.form-control(type="text", id="chatSearch",placeholder='Search by username')
+            //- input.form-control.mr-sm-2(type='text',id="chatSearch" placeholder='Search', aria-label='Search')
+            .showSearchList.chatScroll.card
         br
         .postCard(class="rellax" data-rellax-speed="5")
-            a(href='/post')
+            a(id="postContainer")
                 input(type='text', name='', placeholder=`What is on your mind, ${user.name}? ` )
         hr
+        .postBox(class="rellax" data-rellax-speed="7")
+            h1.text-center  Post 📝
+            hr
+            .card
+                form(action='/post', enctype='multipart/form-data', method='post')
+                    div.form-group
+                        label Select a picture for post :
+                        input(type='file', name='pic')
+                    div.form-group
+                        textarea.form-control(type='text',rows="5",cols="5" ,name='status', id='')
+                    div.form-group
+                        input.btn.btn-success(type='submit', name='btn_upload_profile_pic', value='Upload')
+            br
         -posts.reverse()
         br
        

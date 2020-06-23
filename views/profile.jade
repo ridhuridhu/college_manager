@@ -7,15 +7,38 @@ block head
     
 block content
     hr
-    h1.text-center #{profile.name}
-    .postContainer(class="rellax" data-rellax-speed="7")
-        form(action='/attendance/addSubject', method='POST')
-            .form-group
-                label(for='') Add Subject
-                input.form-control(type='text', name='name', id='', placeholder='')
-                input.btn.btn-success(type='submit',id='addSubject' value='Add')
-        hr
-    br
+    h1.text-center #{profile.name}  
+    table.table
+        thead
+            tr
+            th(scope='col')
+                | followers
+            th(scope='col')
+                | following
+        tbody
+            tr
+            th#followers #{profile.followers.length}
+            th#following  #{profile.following.length}
+            
+
+    p
+        if(follow)
+            .btn.btn-danger.unfollow(id=`${profile._id}`) unfollow
+        if(!follow)
+            .btn.btn-success.follow(id=`${profile._id}`) Follow
+    p
+        a(href=`/direct/${profile._id}`) Direct 
+
+        
+    if(attendance)
+        .postContainer(class="rellax" data-rellax-speed="7")
+            form(action='/attendance/addSubject', method='POST')
+                .form-group
+                    label(for='') Add Subject
+                    input.form-control(type='text', name='name', id='', placeholder='')
+                    input.btn.btn-success(type='submit',id='addSubject' value='Add')
+            hr
+        br
 
     if(attendance)
         .attendanceBox(class="rellax" data-rellax-speed="5")

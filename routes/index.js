@@ -28,6 +28,7 @@ const { findById } = require('../models/Post');
 const {ensureGuest, ensureAuthenticated} = require('../libs/auth');
 const { compareSync } = require('bcryptjs');
 const { route } = require('./classroom');
+const { json } = require('body-parser');
 
 
 router.get('/',ensureAuthenticated,async (req, res) => {
@@ -37,10 +38,11 @@ router.get('/',ensureAuthenticated,async (req, res) => {
 
 });
 
-router.get("/post",ensureAuthenticated,(req,res)=>{
-  res.render("post")
-});
+// router.get("/post",ensureAuthenticated,(req,res)=>{
+//   res.render("post")
+// });
 
+//Post 
 router.post("/post",ensureAuthenticated,upload.single("pic"),(req,res)=>{
   try {
     var post=new Post()
@@ -58,7 +60,7 @@ router.post("/post",ensureAuthenticated,upload.single("pic"),(req,res)=>{
   }
 });
 
-
+//User profile 
 router.get("/profile",ensureAuthenticated,(req,res)=>{
   User.findById(req.user._id,(err,profile)=>{
     Attendance.find({'user':profile._id},(err,attendance)=>{
@@ -70,37 +72,100 @@ router.get("/profile",ensureAuthenticated,(req,res)=>{
   });
 });
 
+//Search Profile 
 router.get("/profile/:id",ensureAuthenticated,async (req,res)=>{
+  var follow=false;
  await User.findById(req.params.id,(err,profile)=>{
     if(err) throw err
+    for(var i=0;i<profile.followers.length;i++){
+      if(JSON.stringify(profile.followers[i])==JSON.stringify(req.user._id)){
+        follow=true
+      }
+    }
    
-    res.render('profile',{user:req.user,profile:profile})
+    res.render('profile',{user:req.user,profile:profile,follow:follow})
 
   });
 });
 
+//search bar
+router.post("/search",async(req,res)=>{
+  //console.log(req.body.name);
+  const nameFind=req.body.name;
+  var div="<div class='userCard'>" 
+  User.find({},(err,users)=>{
+    if(err)  throw err;
+    users.map(user=>{
+      const myName=(user.name).search(nameFind)
+      if(myName>=0){
+        // console.log(user.name);
+        div+=`<a class="userList" href=/profile/${user._id}>
+            ${user.name}
+            </a>`
+            
+      }
+    })
+    div+="</div>";
+    res.send(div);
+  })
+ 
+})
+//follow button
+router.post("/follow",ensureAuthenticated,(req,res)=>{
+  User.findById(req.body.id,(err,profile)=>{
+    if(err) throw err;
+    profile.followers.push(req.user._id)
+    profile.followersName.push(req.user.name)
+    profile.save(err=>{
+      if(err) throw err;
+      User.findById(req.user._id,(err,user)=>{
+        if(err) throw err;
+        user.following.push(profile._id)
+        user.followingName.push(profile.name)
+        user.save(err=>{
+          if(err) throw err;
+          res.send("followed")
 
-// router.get("/like/:id",ensureAuthenticated,(req,res)=>{
-//   Post.findByIdAndUpdate(req.params.id,{$push:{likes:req.user._id}},(err)=>{
-//     if (err) throw err;
-//     res.redirect("/");
-//   })
-// });
+        })
+      })
+  
+    })
 
-// router.get("/unlike/:id",ensureAuthenticated,(req,res)=>{
-//   Post.findByIdAndUpdate(req.params.id,{$pull:{"likes":req.user._id}},(err)=>{
-//     if(err) throw err;
-//     res.redirect("/");
-//   })  
-// })
+  })
+})
 
-// router.get('/comments/:id',ensureAuthenticated,(req,res)=>{
-//   Post.findById(req.params.id,(err,post)=>{
-//     if(err) throw err;
-//     res.render('comment',{post:post});
-//   })
-// })
+//unfollow button
+router.post("/unfollow",ensureAuthenticated,(req,res)=>{
+  User.findById(req.body.id,(err,profile)=>{
+    if(err) throw err;
+    for(var i=0;i<profile.followers.length;i++){
+      if(JSON.stringify(profile.followers[i])==JSON.stringify(req.user._id)){
+        profile.followers.splice(i,1);
+        profile.followersName.splice(i,1)
+      }
+    }
+    profile.save(err=>{
+      if(err) throw err;
+      User.findById(req.user._id,(err,user)=>{
+        if(err) throw err;
+        for(var i=0;i<user.following.length;i++){
+          if(JSON.stringify(user.following[i])==JSON.stringify(profile._id)){
+            user.following.splice(i,1)
+            user.followingName.splice(i,1);
+          }
+        }
+        user.save(err=>{
+          if(err) throw err;
+          res.send("unfollowed")
+        }) 
+      })
+      
+    })
 
+  })
+})
+
+//like button Ajax
 router.post('/likeAjax',ensureAuthenticated,(req,res)=>{
   //console.log('like')
   Post.findByIdAndUpdate(req.body.id,{$push:{likes:req.user._id}},(err)=>{
@@ -108,6 +173,8 @@ router.post('/likeAjax',ensureAuthenticated,(req,res)=>{
     res.send(req.body.id);
   })
 })
+
+//unlike button Ajax
 
 router.post('/unlikeAjax',ensureAuthenticated,(req,res)=>{
   //console.log('unlike')
@@ -119,6 +186,7 @@ router.post('/unlikeAjax',ensureAuthenticated,(req,res)=>{
 });
 
 
+//join via link to classroom
 
 router.get('/join/:code',ensureAuthenticated,(req,res)=>{
   // console.log(req.params);
@@ -153,18 +221,6 @@ router.get('/join/:code',ensureAuthenticated,(req,res)=>{
 })
 })
 
-//SEARCH BAR
-// const _=require("lodash")
-// router.get("/search",ensureAuthenticated,(req,res,next)=>{
-//   //console.log(req.query)
-//   // const myName=req.query.id;
-//     User.find({},(err,users)=>{
-//       if(err) throw err;
-//       users.map(user=>{
-//         res.send(user.name)
 
-//       })
-//     });
-// })
 module.exports = router;
 
