@@ -1,4 +1,4 @@
-.announcementBox,.notesBox{
+.announcementBox,.notesBox,.pollBox{
     padding: 10px;
     border-radius: 5px;
     color: #f4f4f4;
@@ -7,4 +7,14 @@
     width: 100%;
     max-width: 580px;
     margin: auto;
+}
+.pollBox .text-muted{
+    float: left;
+}
+.pollCard{
+    width: 100%;
+    max-width: 550px;
+    margin: auto;
+    padding: 5px;
+    
 }

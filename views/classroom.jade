@@ -12,6 +12,7 @@ block content
         
         button.btn.btn-primary(id='notes') Notes
         button.btn.btn-primary(id="announcement") Announcement
+        button.btn.btn-primary(id="poll") Poll
     hr
    
     .card.notes
@@ -32,13 +33,29 @@ block content
             div.form-group
                 input.btn.btn-success(type='submit', name='btn_upload_profile_pic', id="shareAnnouncement" value='Sent')
         br
+    .card.poll
+        form(action="/classroom/poll", method="post")
+            .form-group
+                label Question Text:
+                input.form-control(type="text", name="question")
+            .form-group
+                label Choice 1:
+                input.form-control(type="text", name="choice1")
+            .form-group
+                label Choice 2:
+                input.form-control(type='text',name="choice2")
+            .form-group.hideGroup
+                input(type="text", name="classId" value=`${myclass._id}`)
+            .form-group
+                input.btn.btn-success(type='submit', id="pollSubmit" value='Submit')
     br
     p Filter :
        
         button.btn.btn-primary(id="showAll") Clear Filter
         button.btn.btn-primary(id="showNotes") Notes
         button.btn.btn-primary(id="showAnnouncement")  Announcement
-    br
+        button.btn.btn-primary(id="showPoll") Poll
+        br
     .chatScroll.card
         ul
             -for(var i=0;i<myclass.classmates.length;i++){
@@ -64,5 +81,40 @@ block content
             a.btn.btn-success(href=`/classroom/download/${myclass.notes[i]}`)  Download
         br     
     -}
+    -polls.reverse()
+    -for(var j=0;j<polls.length;j++){
+        -if(JSON.stringify(`${myclass._id}`)===JSON.stringify(`${polls[j].classId}`)){
+            .card.pollBox(id=`${polls[j]._id}`)  
+                h4.card-title #{polls[j].question}
+                span.text-muted by #{polls[j].hostedName}
+                br
+                -if(polls[j].polled.length){
+                    -for(var k=0;k<polls[j].polled.length;k++){
+                        -if(JSON.stringify(user._id)==JSON.stringify(polls[j].polled[k])){
+                            button.btn.btn-primary.showPollResult(id=`${polls[j]._id}`) Show poll 
+                            -break;
+                        -}
+                        -if(JSON.stringify(user._id)!=JSON.stringify(polls[j].polled[k])){
+                            p.card-body
+                                button.btn.btn-primary.pollBtn1(id=`${polls[j]._id}`) #{polls[j].choice1} 
+                                button.btn.btn-primary.pollBtn2(id=`${polls[j]._id}`) #{polls[j].choice2} 
+                            -break;
+                    
+
+                        -}
+                    -}
+                -}
+                -else{
+                    p.card-body
+                        button.btn.btn-primary.pollBtn1(id=`${polls[j]._id}`) #{polls[j].choice1} 
+                        button.btn.btn-primary.pollBtn2(id=`${polls[j]._id}`) #{polls[j].choice2} 
+                    
+
+                -}
+            br 
+        -}
+    -}
+    
     hr
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js")
     script(src="../scripts/classRoom.js")

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" >
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" >
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -14,88 +15,49 @@
     <br>
     <br>
   
-    <div  class=" userCard">
-        <a class="userList" href=``>
-            Ridhu Ridhu 
-        </a>
-        <a class="userList" href=``>
-            Ridhu Ridhu 
-        </a>
-        
-
-        
-
-    </div>
  
+    <canvas class="card" id="myChart" width="400px" height="400px"></canvas>
        
 </div>
 </body>
 </html>
-<style>
-    body{
-        background-color: black;
-    }
-    .userCard{
-        display: flex;
-        flex-direction: column;
-        width: 50%;
-    }
-    
-    .userList{
-        border: 0.5px solid silver;
-        padding: 5px;
-        text-align: left;
-        text-decoration: none;
-        cursor: pointer;
-        flex: 1;
-        margin-top: 3px;
-        color: #f4f4f4;
-    }
-    .userList :hover{
-        color: #23527c;
-        text-decoration: none;
-    }
-    .hi{
-        display: flex;
-    }
-    .hi input{
-        flex: 2;
-    }
-    .speech-bubble {
-        position: relative;
-        background: #f4f4f4;
-        border-radius: .4em;
-        padding: 10px;
-        border: 0.5px dotted #23527c;
-        width: 100%;
-        max-width: 360px;
-        margin: auto;
-    }
-    
-    .speech-bubble:after {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 50%;
-        width: 0;
-        height: 0;
-        border: 24px solid transparent;
-        border-right-color: #23527c;
-        border-left: 0;
-        margin-top: -24px;
-        margin-left: -24px;
-    }
-</style>
 <script>
-
-    $("#chatSearch").keyup(function (e) { 
-    
-        const searchInput=document.getElementById("chatSearch")
-        let key =searchInput.value
-        for(var i=0;i<`${users.length}`;i++){
-            console.log(users[i].name)
+    var ctx = document.getElementById("myChart");
+    var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
         }
     });
-    
 
 </script>
