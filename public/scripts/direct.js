@@ -3,14 +3,18 @@
 $("#chatSearch").keyup(function (e) { 
     
     const searchInput=document.getElementById("chatSearch")
-    // console.log(searchInput.value)
-    $.post("/direct/search",{name:searchInput.value},(data)=>{
-        if(data){
-            // console.log(data);
-            $(".showSearchList").html(data);
-        }
-    })
+    if(searchInput.value){
+          // console.log(searchInput.value)
+        $.post("/direct/search",{name:searchInput.value},(data)=>{
+            if(data){
+                // console.log(data);
+                $(".showSearchList").html(data);
+            }
+        })
 
+
+    }
+  
  });
 
 

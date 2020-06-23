@@ -65,12 +65,16 @@ $("#postContainer").click(function(){
 $("#chatSearch").keyup(function (e) { 
     
     const searchInput=document.getElementById("chatSearch")
-    // console.log(searchInput.value)
-    $.post("/search",{name:searchInput.value},(data)=>{
-        if(data){
-            // console.log(data);
-            $(".showSearchList").html(data);
-        }
-    })
+    if(searchInput.value){
+        $.post("/search",{name:searchInput.value},(data)=>{
+            if(data){
+                // console.log(data);
+                $(".showSearchList").html(data);
+            }
+        })
+    
 
+    }
+    // console.log(searchInput.value)
+  
  });
