@@ -22,12 +22,13 @@ block content
             
 
     p
-        if(follow)
-            .btn.btn-danger.unfollow(id=`${profile._id}`) unfollow
-        if(!follow)
-            .btn.btn-success.follow(id=`${profile._id}`) Follow
-    p
-        a(href=`/direct/${profile._id}`) Direct 
+        if(JSON.stringify(user._id)!=JSON.stringify(profile._id))
+            if(follow)
+                .btn.btn-danger.unfollow(id=`${profile._id}`) unfollow
+            if(!follow)
+                .btn.btn-success.follow(id=`${profile._id}`) Follow
+        
+            a.btn.btn-success(href=`/direct/${profile._id}`) Direct 
 
         
     if(attendance)

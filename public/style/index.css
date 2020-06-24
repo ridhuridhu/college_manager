@@ -57,6 +57,10 @@ input{
     margin-top: 3px;
     color: #f4f4f4;
     float: left;
+
+}
+.userCard a{
+    text-decoration: none;
 }
 .userList :hover{
     color: #23527c;

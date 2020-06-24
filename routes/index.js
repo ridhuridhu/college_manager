@@ -62,13 +62,14 @@ router.post("/post",ensureAuthenticated,upload.single("pic"),(req,res)=>{
 
 //User profile 
 router.get("/profile",ensureAuthenticated,(req,res)=>{
+  var follow=false;
   User.findById(req.user._id,(err,profile)=>{
     Attendance.find({'user':profile._id},(err,attendance)=>{
       //console.log(attendance.present)
       if(err) throw err
-        res.render('profile',{user:req.user,profile:profile,attendance:attendance})
+        res.render('profile',{user:req.user,profile:profile,attendance:attendance,follow:follow})
     })
-  
+
   });
 });
 

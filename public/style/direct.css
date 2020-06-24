@@ -68,6 +68,9 @@
     flex-direction: column;
     width: 50%;
 }
+.userCard a{
+    text-decoration: none;
+}
 
 .userList{
     border: 0.5px solid #23527c;

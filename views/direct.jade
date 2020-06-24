@@ -11,7 +11,18 @@ block content
             input.form-control(type="text", id="chatSearch",placeholder='Search by Username')
             //- input.form-control.mr-sm-2(type='text',id="chatSearch" placeholder='Search', aria-label='Search')
             .showSearchList.chatScroll.card
-        
+        if(user.following.length)
+        p Chat with your Following 💬
+            .scrollContainer
+                ul
+                    -for(var i=0;i<user.following.length;i++){
+                        li 
+                            a(href=`${user.following[i]}`) #{user.followingName[i]}
+
+                
+                    -}
+                
+        br
     .userCard
         input(type="text",id="username",value=`${user.name}`)
     if(private)
@@ -19,7 +30,7 @@ block content
         .card
             input#room(type="text" value=`${otherUser._id}:${user._id}`)
         hr
-
+    
     #Chat.container
     form.ChatBottom.container
         input#msgBox.form-control
