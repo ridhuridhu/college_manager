@@ -3,7 +3,7 @@
  <p align="right"><a align="center" href="https://github.com/ridhuridhu">-Ridhu Ridhu  </a>
 <hr></p>
 <br>
-<p align="left"> It allows Students to share pictures and articles, as well as their own thoughts and opinions with other students   </p>
+<p align="left"> It allows Students to share pictures and articles, as well as their own thoughts and opinions with other students 🗣  </p>
 <hr>
 <img  src="https://github.com/ridhuridhu/College-Manager/blob/master/screenshots/fest.png" >
 <br>
@@ -26,12 +26,15 @@
 <p align="left">Students can <b>📥 Download</b> notes and make use of them !  </p>
 <img width="500px" height="500px" src="https://github.com/ridhuridhu/College-Manager/blob/master/screenshots/downloadnotes.png"/>
 <br>
-<p align="left">synchronous search bar to find other students </p>
+<p align="left">synchronous search bar to find other students by their username 🔎 </p>
 <img src="https://github.com/ridhuridhu/College-Manager/blob/master/screenshots/searchbarGif.gif">
-<p align="left"> students can chat with otherstudents </p>
+<p align="left"> students can chat with otherstudents 💬 </p>
 <img src="https://github.com/ridhuridhu/College-Manager/blob/master/screenshots/privateChat.png">
 <br>
-
+<p> Students can conducted poll within class they have joined 👆🏻
+ <img src="https://github.com/ridhuridhu/College-Manager/blob/master/screenshots/poll.png">
+ </p>
+<br>
 <h1 align="center"> 💙
  <hr>
  <img src="https://github.com/ridhuridhu/College-Manager/blob/master/screenshots/love.png">
