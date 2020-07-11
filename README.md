@@ -1,6 +1,9 @@
 
 <h1 align="center">👩🏻‍🎓 College Manger 👨🏻‍🎓 </h1>
  <p align="right"><a align="center" href="https://github.com/ridhuridhu">-Ridhu Ridhu  </a>
+ <p align='left'>
+<img align='center' src="https://visitor-badge.glitch.me/badge?page_id=college-Manager.visitor-badge">
+ <p/>
 <hr></p>
 <br>
 <p align="left"> It allows Students to share pictures and articles, as well as their own thoughts and opinions with other students 🗣  </p>
