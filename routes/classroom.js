@@ -43,7 +43,7 @@ router.post('/createClass',ensureAuthenticated,(req,res)=>{
     
 });
 
-router.post('/joinClass',ensureAuthenticated,(req,res)=>{
+router.post('/joinClass',ensureAuthenticated,(req,res,next)=>{
   // console.log(req.body);
     
     const code=req.body.code;
@@ -140,8 +140,8 @@ router.post('/announcement/:id',ensureAuthenticated,(req,res)=>{
 
 router.get('/download/:name',ensureAuthenticated,(req,res)=>{
     var filename=req.params.name
-    //Hey this is hard coded Change it :) 
-    var filePathUploads=`D:/Index/inductions/Facebook-Clone/uploads/${filename}`    
+    //Hey this is hard coded Change it :) //D:\Index\inductions\College-Manager
+    var filePathUploads=`D:/Index/inductions/College-Manager/uploads/${filename}`    
     res.download(filePathUploads);
 })
 

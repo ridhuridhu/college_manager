@@ -17,7 +17,7 @@ block content
                 ul
                     -for(var i=0;i<user.following.length;i++){
                         li 
-                            a(href=`${user.following[i]}`) #{user.followingName[i]}
+                            a(href=`/profile/${user.following[i]}`) #{user.followingName[i]}
 
                 
                     -}
