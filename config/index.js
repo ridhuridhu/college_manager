@@ -1,3 +1,6 @@
+require('dotenv').config();
+
+
 module.exports = {
-  MONGO_URL: 'mongodb://localhost/CollegeManger'
+  MONGO_URL: process.env.DB_URL
 };
