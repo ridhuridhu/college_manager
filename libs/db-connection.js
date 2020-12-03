@@ -5,7 +5,8 @@ const {
 mongoose.Promise = global.Promise;
 
 mongoose.connect(MONGO_URL, {
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useUnifiedTopology:true,
 });
 
 mongoose.connection
