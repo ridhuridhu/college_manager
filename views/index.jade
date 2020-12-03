@@ -21,12 +21,12 @@ block content
             h1.text-center  Post 📝
             hr
             .card
-                form(action='/post', enctype='multipart/form-data', method='post')
+                form(action='/post',id="postBoxForm", enctype='multipart/form-data', method='post')
                     div.form-group
                         label Select a picture for post :
-                        input(type='file', name='pic')
+                        input(type='file', name='pic',id='pic')
                     div.form-group
-                        textarea.form-control(type='text',rows="5",cols="5" ,name='status', id='')
+                        textarea.form-control(type='text',rows="5",cols="5" ,name='status', id='status')
                     div.form-group
                         input.btn.btn-success(type='submit', name='btn_upload_profile_pic', value='Upload')
             br
@@ -41,7 +41,7 @@ block content
                     span.text-muted  #{posts[i].date}
                 .body
                     p #{posts[i].status}
-                    img(src=`/image/${posts[i].image}`, alt='')
+                    img(src=`${posts[i].image}`, alt='')
                 .bottom.row
                     -let show=0
                     -if(posts[i].likes.length){

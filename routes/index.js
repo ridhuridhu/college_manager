@@ -41,19 +41,29 @@ router.get('/',ensureAuthenticated,async (req, res) => {
 // router.get("/post",ensureAuthenticated,(req,res)=>{
 //   res.render("post")
 // });
+const cloudinary=require('cloudinary').v2;
+// cloudinary.config({
+//   cloud_name: process.env.CLOUD_NAME,
+//   api_key: process.env.API_KEY,
+//   api_secret:process.env.API_SECRET
 
+// });
 //Post 
-router.post("/post",ensureAuthenticated,upload.single("pic"),(req,res)=>{
+router.post("/post",ensureAuthenticated,(req,res)=>{
   try {
+    // cloudinary.uploader.upload(req.file.filename,(err,res)=>{
+    //     if(err) console.log(err);
+    //     console.log(res);
+    //   });
     var post=new Post()
     post.status=req.body.status
-    post.image=req.file.filename
+    post.image=req.body.link
     post.user_id=req.user._id
     post.name=req.user.name
     post.date=moment().format('MMMM Do YYYY, h:mm:ss a')
     post.save((err)=>{
       if(err) throw err;
-      res.redirect("/");
+      res.send("done");
     })
   } catch (error) {
     res.send(400);

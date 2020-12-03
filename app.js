@@ -22,7 +22,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 require('dotenv').config();
-
 app.use(session({
   secret: 'abc123',
   resave: true,
